@@ -1,35 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --navy: #050810;
-  --navy-mid: #0a0f1e;
-  --ice: #4fc3f7;
-  --cyan: #00e5ff;
-  --purple: #7c3aed;
-  --violet: #a855f7;
-  --gold: #f59e0b;
-  --amber: #d97706;
-  --corruption: #7f1d1d;
-  --ash: #6b7280;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--navy);
-  color: #e2e8f0;
-  font-family: 'Inter', system-ui, sans-serif;
-  overflow-x: hidden;
-}
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-track { background: #050810; }
 ::-webkit-scrollbar-thumb { background: rgba(79,195,247,0.25); border-radius: 2px; }
+
+@keyframes auroraA {
+  0% { transform: translate(-10%,-15%) rotate(-6deg) scale(1.2); }
+  50% { transform: translate(8%,5%) rotate(4deg) scale(1.35); }
+  100% { transform: translate(-10%,-15%) rotate(-6deg) scale(1.2); }
+}
+@keyframes auroraB {
+  0% { transform: translate(12%,8%) rotate(5deg) scale(1.3); }
+  50% { transform: translate(-8%,-10%) rotate(-4deg) scale(1.42); }
+  100% { transform: translate(12%,8%) rotate(5deg) scale(1.3); }
+}
+@keyframes fogDrift {
+  0%,100% { transform: translateX(-8%) scaleX(1.2); opacity:.22; }
+  50% { transform: translateX(8%) scaleX(1.4); opacity:.35; }
+}
+@keyframes titleGlow {
+  0%,100% { text-shadow: 0 0 28px rgba(79,195,247,.5), 0 0 75px rgba(79,195,247,.18); }
+  50% { text-shadow: 0 0 38px rgba(0,229,255,.75), 0 0 100px rgba(0,229,255,.28); }
+}
+@keyframes scrollBob {
+  0%,100% { transform: translateX(-50%) translateY(0); opacity:.35; }
+  50% { transform: translateX(-50%) translateY(7px); opacity:.7; }
+}
+@keyframes particleFloat {
+  0% { transform: translateY(0) translateX(0); opacity:0; }
+  8% { opacity:1; }
+  88% { opacity:.25; }
+  100% { transform: translateY(-100vh) translateX(var(--dx,0px)); opacity:0; }
+}
+@keyframes pulse { 0%,100% { opacity:.3; } 50% { opacity:.65; } }
+@keyframes scarPulse { 0%,100% { opacity:.55; } 50% { opacity:.85; } }
+@keyframes floatUp { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+@keyframes spinRing { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@keyframes corruptFog { 0%,100% { opacity:.4; } 50% { opacity:.65; } }
+@keyframes panelSlide { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
+@keyframes overlayFade { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes cityPulse { 0%,100% { r:3.5; } 50% { r:5; } }
+@keyframes ringPulse { 0%,100% { opacity:.2; } 50% { opacity:.55; } }
+
+.aurora-ice {
+  position:absolute; top:-20%; left:-18%; width:68%; height:72%;
+  border-radius: 44% 56% 50% 50% / 48% 38% 62% 52%;
+  background: radial-gradient(ellipse, rgba(79,195,247,.17) 0%, rgba(79,195,247,.04) 52%, transparent 74%);
+  animation: auroraA 30s ease-in-out infinite;
+  filter: blur(46px);
+}
+.aurora-purple {
+  position:absolute; top:-12%; right:-22%; width:62%; height:68%;
+  border-radius: 54% 46% 40% 60% / 56% 50% 50% 44%;
+  background: radial-gradient(ellipse, rgba(124,58,237,.19) 0%, rgba(124,58,237,.05) 50%, transparent 72%);
+  animation: auroraB 25s ease-in-out infinite;
+  filter: blur(55px);
+}
+.aurora-gold {
+  position:absolute; top:28%; left:24%; width:52%; height:48%;
+  border-radius:50%;
+  background: radial-gradient(ellipse, rgba(245,158,11,.08) 0%, transparent 60%);
+  filter: blur(36px);
+}
+.aurora-fog {
+  position:absolute; bottom:-8%; left:-12%; right:-12%; height:40%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(127,29,29,.28) 0%, rgba(127,29,29,.06) 46%, transparent 70%);
+  animation: fogDrift 20s ease-in-out infinite;
+  filter: blur(26px);
+}
+.aurora-vignette {
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 15%, rgba(5,8,16,.48) 60%, rgba(5,8,16,.92) 100%);
+}
+.aurora-bottom {
+  position:absolute; bottom:0; left:0; right:0; height:26%;
+  background: linear-gradient(to bottom, transparent, #050810);
+}
+.dots-bg {
+  position:absolute; inset:0;
+  background-image: radial-gradient(circle, rgba(79,195,247,.06) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
