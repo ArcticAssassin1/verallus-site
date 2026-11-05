@@ -2,6 +2,7 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import WorldMap from './components/WorldMap'
 import Characters from './components/Characters'
+import Races from './components/Races'
 import { SpoilerProvider } from './components/Spoiler'
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <WorldMap />
       <Characters />
+      <Races />
     </SpoilerProvider>
   )
 }
