@@ -129,6 +129,8 @@ body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, san
   background: linear-gradient(180deg, rgba(var(--rgb), 0.9), rgba(var(--rgb), 0.1));
 }
 
+.faction-card { min-height: 200px; }
+
 /* ── Small screens ── */
 @media (max-width: 760px) {
   .nav-links { display: none !important; }

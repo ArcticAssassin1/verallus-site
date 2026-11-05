@@ -87,7 +87,7 @@ export const RACE_GROUPS: RaceGroup[] = [
           ] },
           { title: 'HARMONISTS AND PURISTS', items: [
             `Harmonists, about 60% and growing, want reconciliation and accept hybrids. It's a youth movement, led publicly by Minister Aelyndra, while Scholar Thessan exposes the historical lies.`,
-            `Purists, about 40% and entrenched, control key institutions and the older generation. They are anti-hybrid and obsessed with bloodline purity. A hybrid in a Purist stronghold isn't just unwelcome. They're a target. {{Some Purist cells are funded by the Torn Overseer network.}}`,
+            `Purists, about 40% and entrenched, control key institutions and the older generation. They are anti-hybrid and obsessed with bloodline purity. A hybrid in a Purist stronghold isn't just unwelcome. They're a target. Some Purist cells are funded by the Torn Overseer network.`,
             `FeyVey nobles are nearly all pure-blood, even the Harmonist ones.`,
           ] },
           { title: 'WOUNDS', items: [
