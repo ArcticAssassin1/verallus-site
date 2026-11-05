@@ -6,6 +6,7 @@ import Races from './components/Races'
 import Power from './components/Power'
 import Factions from './components/Factions'
 import Timeline from './components/Timeline'
+import Lore from './components/Lore'
 import { SpoilerProvider } from './components/Spoiler'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Power />
       <Factions />
       <Timeline />
+      <Lore />
     </SpoilerProvider>
   )
 }

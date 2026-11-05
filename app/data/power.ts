@@ -67,7 +67,7 @@ export const FOUNDATIONS: Topic[] = [
       { title: 'THE EIGHT', items: [
         `Serena: love and compassion. Her imprint is strongest near the River of Echoes.`,
         `Porish: logic and intellect. Ortox: strength and courage.`,
-        `Treswack: hate, corruption and chaos. Evil for its own sake. {{He has a son, Khaervos, which breaks cosmic law.}}`,
+        `Treswack: hate, corruption and chaos. Evil for its own sake. He has a son, Khaervos, which breaks cosmic law.`,
         `Father: the overseer, who intervenes when it's necessary.`,
         `Retallia and Retaan: the twins. Balance, and freedom.`,
         `Argon: the outcast, who keeps to himself. {{Arah's father's line descends from him.}}`,
