@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { REGIONS } from '../data/regions'
-import SpoilerText from './Spoiler'
+import SpoilerText, { SpoilerToggle } from './Spoiler'
 
 type RegionKey = keyof typeof REGIONS
 
@@ -19,6 +19,7 @@ export default function WorldMap() {
         <p style={{ fontSize: 13.5, color: '#64748b', fontWeight: 300, maxWidth: 460, margin: '0 auto', lineHeight: 1.82 }}>
           Seven continents shape the politics, bloodlines, and wounds of Verallus. Click any region to open its archive.
         </p>
+        <div style={{ marginTop: 20 }}><SpoilerToggle /></div>
       </div>
 
       {/* Map Container */}

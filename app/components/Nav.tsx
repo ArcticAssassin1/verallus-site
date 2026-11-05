@@ -42,7 +42,7 @@ export default function Nav() {
           </div>
           <span style={{ color: '#b0bec5', fontSize: 11, fontWeight: 600, letterSpacing: '0.24em', fontFamily: 'Cinzel, serif' }}>VERALLUS</span>
         </a>
-        <div style={{ display: 'flex', gap: 24, marginLeft: 'auto', alignItems: 'center' }}>
+        <div className="nav-links" style={{ display: 'flex', gap: 24, marginLeft: 'auto', alignItems: 'center' }}>
           {LINKS.map(l => (
             <a key={l.href} href={l.href} style={{
               fontFamily: 'Cinzel, serif', fontSize: 9, letterSpacing: '0.2em',
