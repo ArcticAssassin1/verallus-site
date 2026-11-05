@@ -9,8 +9,8 @@ import ArchivePanel, { sectionLabel as label } from './ArchivePanel'
 
 const ALL_TOPICS = [...FOUNDATIONS, ...CATEGORIES, ...BENDING_TOPICS, ...CORRUPTION_TOPICS, ...BEYOND]
 
-// Tier colors climb from slate through blue and violet to gold.
-const TIER_COLOR: { color: string; rgb: string }[] = [
+// Tier colors climb from slate through blue and violet to gold. Timeline reuses them for the books.
+export const TIER_COLOR: { color: string; rgb: string }[] = [
   { color: '#64748b', rgb: '100,116,139' },
   { color: '#7dd3fc', rgb: '125,211,252' },
   { color: '#4fc3f7', rgb: '79,195,247' },
