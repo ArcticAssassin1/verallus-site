@@ -222,7 +222,7 @@ export const RACE_GROUPS: RaceGroup[] = [
           { title: 'LOOK', items: [
             `Deep blue-gray to slate skin, with patterns that pulse on their own.`,
             `Large eyes adapted to the deep, pale silver to deep aqua, faintly glowing in the dark.`,
-            `Gills on the neck and ribs.`,
+            `Gills on the neck and ribs. Most Chrono can stay on land for a few hours, some for a whole day. More developed Chrono can stay above water for longer.`,
           ] },
           { title: 'SOFRA', items: [
             `A moderate, stable awakening rate. Water, flow, perception and healing are most common.`,

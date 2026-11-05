@@ -155,7 +155,7 @@ export const REGIONS = {
     name: 'Oceanus Vastara',
     sub: 'CHRONO TERRITORY · MOSTLY UNDERWATER',
     status: 'AQUATICALLY DOMINANT · TERRITORIALLY PARANOID',
-    desc: 'Thousands of islands above the water and great cities far below it. Living coral architecture, pressure-sealed domes, bioluminescent depths. The Chrono speak partly in sound harmonics, and they do not trust surface-dwellers.',
+    desc: 'Thousands of islands above the water and great cities far below it. Living coral architecture, pressure-sealed domes, bioluminescent depths. The Chrono speak partly in sound harmonics. Most can stay on land for a few hours, the more developed for longer. They do not trust surface-dwellers.',
     stats: [
       { v: '~6M', l: 'Population' },
       { v: '2.5M', l: 'Tidalus' },
