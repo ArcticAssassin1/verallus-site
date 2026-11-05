@@ -75,10 +75,11 @@ export const FACTION_GROUPS: FactionGroup[] = [
         key: 'council', name: 'The World Council', role: 'The Intercontinental Peace Council. Same body, two names.', align: 'NEUTRAL',
         stats: [
           { v: 'Accord of Ashes', l: 'Formed by' },
+          { v: '~20 yrs', l: 'Since founding' },
           { v: 'On paper', l: 'Its authority' },
           { v: 'Suppression marks', l: 'It commissions' },
         ],
-        desc: `The international governing body formed by the Accord of Ashes at the end of the Shattered Century. It enforces international law, manages treaties, oversees the ban on forbidden research, and is supposed to protect the Oracle bloodlines. It largely fails at that last one. Its authority is significant on paper and variable in practice. The Torn Overseers have always ignored it when it suits them.`,
+        desc: `The international governing body formed by the Accord of Ashes at the end of the Shattered Century, about twenty years before Book 1. It enforces international law, manages treaties, oversees the ban on forbidden research, and is supposed to protect the Oracle bloodlines. It largely fails at that last one. Its authority is significant on paper and variable in practice. The Torn Overseers have always ignored it when it suits them.`,
         sections: [
           { title: 'THE DEMI-GOD CONTAINMENT LAWS', items: [
             `Its most significant act: formal classification of demigods, and suppression marks that cap what they can express without touching what they could become.`,
