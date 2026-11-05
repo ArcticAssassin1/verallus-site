@@ -56,7 +56,7 @@ export default function Hero() {
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '120px 24px 90px', maxWidth: 900, margin: '0 auto' }}>
         <div style={{ fontSize: 9.5, letterSpacing: '0.48em', color: '#f59e0b', marginBottom: 24, opacity: 0.78, fontFamily: 'Cinzel, serif', animation: 'fadeUp 0.9s ease 1.3s both' }}>
-          A WORLD OF SIX RACES &nbsp;·&nbsp; NINE ABSOLUTES &nbsp;·&nbsp; A TRUTH TEN THOUSAND YEARS BURIED
+          A WORLD OF SIX RACES &nbsp;·&nbsp; TEN ABSOLUTES &nbsp;·&nbsp; A TRUTH FOUR THOUSAND YEARS BURIED
         </div>
 
         <h1 style={{
@@ -79,7 +79,7 @@ export default function Hero() {
         </div>
 
         <p style={{ fontSize: 'clamp(13px,1.7vw,15px)', color: '#94a3b8', fontWeight: 300, lineHeight: 1.85, maxWidth: 540, margin: '0 auto 48px', animation: 'fadeUp 0.9s ease 2.3s both' }}>
-          Six races. Ten tiers of power. A bending art extinct for ten thousand years —<br />
+          Six races. Ten tiers of power. A bending art lost for four thousand years,<br />
           waking up inside a sixteen-year-old boy who doesn&apos;t know what he is.
         </p>
 

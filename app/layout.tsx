@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Verallus',
-  description: 'Six races. Nine Absolutes. A truth ten thousand years buried.',
+  description: 'Six races. Ten Absolutes, two of them dead. A truth four thousand years buried.',
 }
 
 export default function RootLayout({

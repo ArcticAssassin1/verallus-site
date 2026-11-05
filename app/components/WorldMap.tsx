@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { REGIONS } from '../data/regions'
+import SpoilerText from './Spoiler'
 
 type RegionKey = keyof typeof REGIONS
 
@@ -13,7 +14,7 @@ export default function WorldMap() {
     <section id="world" style={{ padding: '80px 0 60px', background: 'linear-gradient(180deg,#050810 0%,#060a14 50%,#050810 100%)' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: 48, padding: '0 28px' }}>
-        <div style={{ fontSize: 9.5, letterSpacing: '0.52em', color: '#f59e0b', opacity: 0.7, marginBottom: 12, fontFamily: 'Cinzel, serif' }}>SESSION II · GEOGRAPHY</div>
+        <div style={{ fontSize: 9.5, letterSpacing: '0.52em', color: '#f59e0b', opacity: 0.7, marginBottom: 12, fontFamily: 'Cinzel, serif' }}>GEOGRAPHY</div>
         <h2 style={{ fontSize: 'clamp(20px,3.2vw,28px)', fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.16em', marginBottom: 12, fontFamily: 'Cinzel, serif' }}>THE WORLD</h2>
         <p style={{ fontSize: 13.5, color: '#64748b', fontWeight: 300, maxWidth: 460, margin: '0 auto', lineHeight: 1.82 }}>
           Seven continents shape the politics, bloodlines, and wounds of Verallus. Click any region to open its archive.
@@ -325,11 +326,11 @@ export default function WorldMap() {
             </div>
 
             {/* Panel Body */}
-            <div style={{ padding: '22px 28px 40px' }}>
+            <div key={active} style={{ padding: '22px 28px 40px' }}>
               {/* Overview */}
               <div style={{ marginBottom: 24 }}>
                 <div style={{ fontSize: 8.5, letterSpacing: '0.35em', color: '#475569', fontFamily: 'Cinzel, serif', marginBottom: 12, paddingBottom: 6, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>OVERVIEW</div>
-                <p style={{ fontSize: 13, color: '#94a3b8', fontWeight: 300, lineHeight: 1.82 }}>{R.desc}</p>
+                <p style={{ fontSize: 13, color: '#94a3b8', fontWeight: 300, lineHeight: 1.82 }}><SpoilerText text={R.desc} /></p>
               </div>
 
               {/* Stats */}
@@ -354,7 +355,7 @@ export default function WorldMap() {
                       <div style={{ width: 6, height: 6, borderRadius: '50%', background: l.c, flexShrink: 0, marginTop: 4 }} />
                       <div>
                         <div style={{ fontSize: 12, fontWeight: 500, marginBottom: 2, color: l.c }}>{l.n}</div>
-                        <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.5 }}>{l.d}</div>
+                        <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.5 }}><SpoilerText text={l.d} /></div>
                       </div>
                     </div>
                   ))}
@@ -367,7 +368,7 @@ export default function WorldMap() {
                   <div style={{ fontSize: 8.5, letterSpacing: '0.35em', color: '#475569', fontFamily: 'Cinzel, serif', marginBottom: 12, paddingBottom: 6, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>DANGER</div>
                   <div style={{ display: 'flex', gap: 10, padding: '12px 14px', background: 'rgba(127,29,29,0.12)', border: '1px solid rgba(127,29,29,0.3)', borderRadius: 6 }}>
                     <span style={{ color: '#ef4444', flexShrink: 0 }}>⚠</span>
-                    <div style={{ fontSize: 12, color: '#fca5a5', lineHeight: 1.6 }}>{R.warn.text}</div>
+                    <div style={{ fontSize: 12, color: '#fca5a5', lineHeight: 1.6 }}><SpoilerText text={R.warn.text} /></div>
                   </div>
                 </div>
               )}
@@ -377,7 +378,7 @@ export default function WorldMap() {
                 <div style={{ fontSize: 8.5, letterSpacing: '0.35em', color: '#475569', fontFamily: 'Cinzel, serif', marginBottom: 12, paddingBottom: 6, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>ARAH&apos;S CONNECTION</div>
                 <div style={{ display: 'flex', gap: 10, padding: '12px 14px', background: 'rgba(79,195,247,0.06)', border: '1px solid rgba(79,195,247,0.18)', borderRadius: 6 }}>
                   <span style={{ color: '#4fc3f7', flexShrink: 0 }}>◈</span>
-                  <div style={{ fontSize: 12, color: '#7dd3fc', lineHeight: 1.6 }}>{R.arah}</div>
+                  <div style={{ fontSize: 12, color: '#7dd3fc', lineHeight: 1.6 }}><SpoilerText text={R.arah} /></div>
                 </div>
               </div>
 
