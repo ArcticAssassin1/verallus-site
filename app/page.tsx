@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import WorldMap from './components/WorldMap'
 import Characters from './components/Characters'
 import Races from './components/Races'
+import Power from './components/Power'
 import Factions from './components/Factions'
 import { SpoilerProvider } from './components/Spoiler'
 
@@ -14,6 +15,7 @@ export default function Home() {
       <WorldMap />
       <Characters />
       <Races />
+      <Power />
       <Factions />
     </SpoilerProvider>
   )
