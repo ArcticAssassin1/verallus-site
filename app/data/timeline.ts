@@ -285,7 +285,7 @@ export const ERAS: Era[] = [
       },
       {
         when: '~16', at: 15.75, title: `{{Mallory's mother}}`,
-        d: `{{A Dormose woman, Mallory's mother, is killed when Mallory is about three months old. Corrupted Elite Six leadership ordered it, to strip the Proctor of his emotional anchor. Kharos carried it out without knowing the whole chain. Soon after, Aelira Nyru arranges for dreamwalkers to let the dead woman visit her infant daughter. The waking presence fades over the years and is gone by Book 1.}}`,
+        d: `{{A Dormose woman, Mallory's mother, is killed when Mallory is about three months old. The corrupted organization above the Proctor ordered it, to strip him of his emotional anchor. Kharos carried it out on orders from Elite Six leadership, without knowing the whole chain. Soon after, Aelira Nyru arranges for dreamwalkers to let the dead woman visit her infant daughter. The waking presence fades over the years and is gone by Book 1.}}`,
       },
       {
         when: '~14', at: 14, title: 'Elaara is born',
