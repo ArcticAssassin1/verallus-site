@@ -9,6 +9,8 @@ const cinzel = 'Cinzel, serif'
 // The deep-time ruler is logarithmic: each step left reaches ten times further back.
 const LOG_MAX = Math.log10(20001)
 const pct = (years: number) => (1 - Math.log10(years + 1) / LOG_MAX) * 100
+// Six significant digits, the precision browsers keep for CSS percentages, so server and client styles match on hydration.
+const p6 = (n: number) => `${Number(n.toPrecision(6))}%`
 const TICKS = [
   { y: 10000, l: '10,000' },
   { y: 1000, l: '1,000' },
@@ -138,7 +140,7 @@ function Ruler({ sel, onPick }: { sel: string; onPick: (k: string) => void }) {
 
   return (
     <div className="tl-ruler" aria-hidden="true">
-      <div className="tl-ruler-label" style={{ left: `${mid}%`, transform: `translateX(-${mid}%)`, color: cur.color }}>
+      <div className="tl-ruler-label" style={{ left: p6(mid), transform: `translateX(-${p6(mid)})`, color: cur.color }}>
         {cur.n} · {cur.short.toUpperCase()}
       </div>
 
@@ -155,8 +157,8 @@ function Ruler({ sel, onPick }: { sel: string; onPick: (k: string) => void }) {
             onClick={() => onPick(e.key)}
             style={{
               ['--rgb' as string]: e.rgb,
-              left: `${a}%`,
-              width: mark ? undefined : `${b - a}%`,
+              left: p6(a),
+              width: mark ? undefined : p6(b - a),
               transform: mark ? `translateX(${a > 99 ? -100 : -50}%)` : undefined,
             } as React.CSSProperties}
           />
@@ -167,7 +169,7 @@ function Ruler({ sel, onPick }: { sel: string; onPick: (k: string) => void }) {
         const x = pct(ev.at!)
         return (
           <span key={i} className="tl-dot" style={{
-            ['--rgb' as string]: cur.rgb, left: `${x}%`, top: dotTop,
+            ['--rgb' as string]: cur.rgb, left: p6(x), top: dotTop,
             transform: `translateX(${x > 99 ? -100 : -50}%)`,
           } as React.CSSProperties} />
         )
@@ -177,7 +179,7 @@ function Ruler({ sel, onPick }: { sel: string; onPick: (k: string) => void }) {
       {TICKS.map(t => {
         const x = pct(t.y)
         return (
-          <div key={t.l} className="tl-tick" style={{ left: `${x}%` }}>
+          <div key={t.l} className="tl-tick" style={{ left: p6(x) }}>
             <span style={{ transform: `translateX(${x > 99 ? -100 : -50}%)` }}>{t.l}</span>
           </div>
         )

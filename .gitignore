@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# map painter scratch output
+/tools/map-painter/out/
+__pycache__/

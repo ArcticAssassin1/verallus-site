@@ -45,6 +45,42 @@ body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, san
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 @keyframes cityPulse { 0%,100% { r:3.5; } 50% { r:5; } }
 @keyframes ringPulse { 0%,100% { opacity:.2; } 50% { opacity:.55; } }
+@keyframes echoFlow { to { stroke-dashoffset: -34; } }
+
+/* World map: painted relief with live regions on top */
+.wm-region { cursor: pointer; outline: none; }
+.wm-hit { fill: transparent; }
+.wm-hl {
+  fill: var(--hl); fill-opacity: 0; stroke: var(--hl); stroke-opacity: 0;
+  stroke-width: 1; stroke-linejoin: round; pointer-events: none;
+  transition: fill-opacity .25s ease, stroke-opacity .25s ease;
+}
+.wm-region:hover .wm-hl, .wm-region:focus-visible .wm-hl {
+  fill-opacity: .06; stroke-opacity: .9; filter: drop-shadow(0 0 2.5px var(--hl));
+}
+.wm-region:focus-visible .wm-hl { stroke-width: 1.4; }
+.wm-label {
+  font-family: Cinzel, serif; pointer-events: none;
+  paint-order: stroke; stroke: rgba(3,6,13,.82); stroke-width: 2.2px; stroke-linejoin: round;
+}
+.wm-echo {
+  fill: none; stroke: rgba(165,226,250,.6); stroke-width: .9; stroke-linecap: round;
+  stroke-dasharray: 1.4 7.1; animation: echoFlow 5s linear infinite; pointer-events: none;
+}
+.wm-scroll { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(245,158,11,.25) transparent; }
+.wm-swipe { display: none; text-align: center; padding: 9px 12px 0; font-family: Cinzel, serif; font-size: 7.5px; letter-spacing: .3em; color: #64748b; }
+.wm-legend {
+  display: flex; align-items: center; gap: 7px; padding: 2px 0; border: 0; background: none;
+  color: #64748b; cursor: pointer; transition: color .2s;
+}
+.wm-legend:hover, .wm-legend:focus-visible { color: #cbd5e1; outline: none; }
+@media (max-width: 760px) {
+  .wm-scroll svg { min-width: 820px; }
+  .wm-swipe { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wm-echo, .wm-region { animation: none !important; }
+}
 
 .aurora-ice {
   position:absolute; top:-20%; left:-18%; width:68%; height:72%;
