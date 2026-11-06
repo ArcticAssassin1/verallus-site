@@ -2,7 +2,7 @@
 
 Paints the world map in `app/components/WorldMap.tsx`.
 
-The continent shapes and every placement come from the hand-drawn map (viewBox 960×560). The painter traces those shapes and paints relief over them: fractal coastlines, ridged mountains, hillshade, ice, lava, the Scar, clouds. The clickable map sits on top of the painting.
+The continent shapes and placements started from the hand-drawn map (0..960 × 0..560) and have moved with Dan's rulings since. The view is zoomed out to `X0, Y0, VW, VH` in `common.py`, which must match the SVG viewBox in `WorldMap.tsx`. The painter traces the shapes and paints relief over them: fractal coastlines, ridged mountains, hillshade, ice, lava, the Scar, clouds. The clickable map sits on top of the painting.
 
 ## Files
 
@@ -23,6 +23,8 @@ MAPV=2 python3 export.py   # bump MAPV whenever the images change, so browsers f
 ## Changing the map
 
 - Moving a continent: edit its path in `common.py` (`P`) and in `WorldMap.tsx` (its hit area), then rerun all three.
+- Skyspire's floating layer: `SKY_SCALE, SKY_DX, SKY_DY` in `common.py`, and `SKY_BOX` follows.
+- Straits that must stay open: the carve list in `base.py` (search for `CB`).
 - Mountain ranges: `ranges` in `base.py`, as polylines in map units.
 - Volcanoes and lava: `VOLC` and `VENTS_E` in `base.py`.
 - The River of Echoes: `ECHO` in `base.py`.
