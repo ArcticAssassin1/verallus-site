@@ -158,7 +158,7 @@ export const FOLDS: Fold[] = [
     key: 'oathless', name: 'The Oathless Sky', kind: 'POCKET DIMENSION', color: '#a855f7', rgb: '168,85,247',
     anchor: 'ABOVE OPEN OCEAN · ENTERED FROM THE HIGH SKY', lights: ['high'],
     short: `Khaervos's domain, over the most isolated ocean on Verallus.`,
-    desc: `A pocket dimension anchored above remote ocean, at the most isolated point between Oceanus Vastara and the Frozen Wastes. Its way in sits in the high sky, where reality thins. Inside are floating islands with unstable gravity and waterfalls that run upward. A storm raised by Khaervos's presence alone keeps nearly everyone out.`,
+    desc: `A pocket dimension anchored above remote ocean, at the most isolated point on Verallus, far east beyond the Ashen Dominion. Its way in sits in the high sky, where reality thins. Inside are floating islands with unstable gravity and waterfalls that run upward. A storm raised by Khaervos's presence alone keeps nearly everyone out.`,
     details: [
       { l: 'Ruler', v: 'Khaervos, from the Tempest Throne' },
       { l: 'Getting in', v: 'An invitation. Without one, it takes Tier 9 power or real knowledge of dimensions.' },
@@ -296,26 +296,6 @@ export const OFFMAP: OffMapSite[] = [
     ],
   },
   {
-    key: 'redwake', name: 'Redwake Dunes', kind: 'SACRED DESERT', where: 'BETWEEN TERRA PRIMUS AND EMBERFELL',
-    color: '#f97316', rgb: '249,115,22',
-    short: 'Sand that shows how much life is near.',
-    desc: `A small unnamed landmass between Terra Primus and Emberfell, off every trade route, with no civilization on it. Emberfell's volcanic reach turns it to harsh desert. Sailors know it's there, and nobody goes on purpose: on maps it's an unnamed hazard warning. The sand changes color with the density of Sopher around it.`,
-    sections: [
-      { title: 'WHAT IT DOES', items: [
-        `Sharpens Sopher perception dramatically.`,
-        `Reveals corruption hidden inside a person.`,
-        `Under extreme circumstances, it can ignite Sofra catalysis.`,
-      ] },
-      { title: 'SAND SICKNESS', items: [
-        `Stay too long and it sets in: hallucinations and memory drift, from dehydration and Sopher overload together.`,
-      ] },
-      { title: 'WHY ANYONE COMES', items: [
-        `Training. It sharpens perception and finds hidden corruption, and it can force a breakthrough. Risky, and effective.`,
-        `{{The story comes here in Book 4.}}`,
-      ] },
-    ],
-  },
-  {
     key: 'prism', name: 'The Prism Wells', kind: 'SOFRA GEYSERS', where: 'SEVEN KNOWN SITES · ONE IN THE REGALUS HEARTLANDS',
     color: '#c084fc', rgb: '192,132,252',
     short: 'Liquid Sofra, erupting in color.',
@@ -448,7 +428,8 @@ const OVERRIDE: Record<string, Partial<CodexEntry>> = {
   // map regions
   'region:scar': { def: 'The strait between Terra Primus and the Ashen Dominion, destroyed by the Cataclysm of Four Nations. Sofra cannot function inside it.', see: ['Cataclysm of Four Nations'] },
   'region:frozen': { term: 'The Frozen Wastes', kind: `FORMER SOL'VASTARA`, aka: [`Sol'Vastara`], see: ['Solarii', 'Auren'] },
-  'region:oathless': { def: 'A pocket dimension anchored above the most isolated stretch of ocean between Oceanus Vastara and the Frozen Wastes. Khaervos rules it from the Tempest Throne.', see: ['Khaervos'] },
+  'region:redwake': { kind: 'SACRED DESERT', def: `A sacred desert on an unnamed landmass off the southeast of the Regalus Heartlands. Its sand changes color with the Sopher around it, and staying too long brings Sand Sickness.`, see: ['Emberfell'] },
+  'region:oathless': { def: 'A pocket dimension anchored above the most isolated stretch of ocean on Verallus, far east beyond the Ashen Dominion. Khaervos rules it from the Tempest Throne.', see: ['Khaervos'] },
   // characters
   'character:khaervos': { see: ['Treswack', 'The Oathless Sky', 'Demigods'] },
   'character:arah': { see: ['Cryobending', 'Redmare', 'The Riverlands'] },
@@ -634,8 +615,6 @@ const WRITTEN: CodexEntry[] = [
     def: `The sealed prison at the bottom of the reachable underground. The Dormose keep its wards, and the Elite Six maintain its seals.`, see: ['The Prime Corruptor'] },
   { term: 'The Fallen Spire', cat: 'PLACES', kind: `SOL'VASTARAN RUIN`, ...SECTION.offmap,
     def: `An ancient tower that fell sideways across the Terra Primus mountains. Inside, gravity is reversed.`, see: ['Gateward Sentinels'] },
-  { term: 'Redwake Dunes', cat: 'PLACES', kind: 'SACRED DESERT', ...SECTION.offmap,
-    def: `A desert on an unnamed landmass between Terra Primus and Emberfell. Its sand changes color with the Sopher around it, and staying too long brings Sand Sickness.` },
   { term: 'The Prism Wells', cat: 'PLACES', kind: 'SOFRA GEYSERS', ...SECTION.offmap, aka: ['Prism Well'],
     def: `Seven known Sofra geysers that erupt in color. They strengthen a domain for a while, and they can kill anyone below Tier 6.`, see: ['Luminant Wardens', 'Echo Wells'] },
   { term: 'Echo Wells', cat: 'PLACES', kind: 'SATURATED GROUND', ...SECTION.offmap,

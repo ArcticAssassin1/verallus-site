@@ -359,7 +359,7 @@ body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, san
 .fold-anchor { font-family: Cinzel, serif; font-size: 7.5px; letter-spacing: 0.18em; color: #475569; margin-top: 7px; line-height: 1.5; }
 
 /* ── Lore Vault: off the map ── */
-.offmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 14px; margin-bottom: 16px; }
+.offmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; margin-bottom: 16px; }
 .offmap-card { min-height: 190px; }
 .offmap-lower { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: start; }
 .vault-panel { border-radius: 12px; padding: 20px 22px; border: 1px solid rgba(255,255,255,0.07); background: linear-gradient(160deg, rgba(var(--rgb), 0.06), rgba(255,255,255,0.012) 55%); transition: background 0.4s; }

@@ -97,19 +97,19 @@ export default function WorldMap() {
 
             {/* ── TERRA PRIMUS: DORMOSE ── */}
             <Region id="dormose" label="Dormose" color="#4ade80" hl={MAP_SHAPES.dormose} open={setActive}>
-              <path className="wm-hit" d="M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 222,450 215,420 218,385 C 221,350 224,308 220,270 C 215,234 205,208 186,198 Z" />
+              <path className="wm-hit" d="M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 224.6,477.2 237.1,486.3 254,493.8 C 254,493.8 248,478 244,466 C 236,442 240,416 237,388 C 234,360 236,334 238,312 C 230,300 224,286 220,270 C 215,234 205,208 186,198 Z" />
               <text className="wm-label" x="180" y="345" fill="rgba(134,239,172,0.92)" fontSize="6.5" letterSpacing="1" textAnchor="middle" transform="rotate(-90 180 345)">DORMOSE</text>
             </Region>
 
             {/* ── TERRA PRIMUS: FEYVEY ── */}
             <Region id="feyvey" label="FeyVey Territories" color="#a78bfa" hl={MAP_SHAPES.feyvey} open={setActive}>
-              <path className="wm-hit" d="M 186,198 C 205,208 215,234 220,270 C 232,260 260,246 292,240 C 324,234 360,237 392,252 C 416,262 432,280 436,302 C 442,275 444,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
+              <path className="wm-hit" d="M 186,198 C 205,208 215,234 220,270 C 224,286 230,300 238,312 C 262,318 300,322 332,326 C 366,330 396,336 418,344 C 428,348 436.9,356 436.9,356 C 433.7,332 432.4,313.7 436,302 C 442,275 444,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
               <text className="wm-label" x="308" y="210" fill="rgba(196,181,253,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">FEYVEY TERRITORIES</text>
             </Region>
 
             {/* ── TERRA PRIMUS: REGALUS ── */}
             <Region id="regalus" label="Regalus Heartlands" color="#fbbf24" hl={MAP_SHAPES.regalus} open={setActive}>
-              <path className="wm-hit" d="M 220,270 C 224,308 221,350 218,385 C 215,420 222,450 218,468 C 228,482 252,496 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 442,392 438,364 C 434,336 432,315 436,302 C 432,280 416,262 392,252 C 360,237 324,234 292,240 C 260,246 232,260 220,270 Z" />
+              <path className="wm-hit" d="M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 442,392 438,364 C 437.6,361.3 437.2,358.6 436.9,356 C 436.9,356 428,348 418,344 C 396,336 366,330 332,326 C 300,322 262,318 238,312 Z" />
               <text className="wm-label" x="310" y="415" fill="rgba(253,224,71,0.92)" fontSize="7" letterSpacing="1.5" textAnchor="middle">REGALUS HEARTLANDS</text>
             </Region>
 
@@ -139,6 +139,12 @@ export default function WorldMap() {
               <circle cx="242" cy="530" r="2.5" fill="#22d3ee" opacity="0.8" style={{ animation: 'pulse 2.5s ease-in-out infinite' }} />
               <text className="wm-label" x="240" y="521" fill="rgba(103,232,249,0.92)" fontSize="6" letterSpacing="0.8" textAnchor="middle">TIDALUS</text>
               <text className="wm-label" x="350" y="548" fill="rgba(103,232,249,0.8)" fontSize="7" letterSpacing="2" textAnchor="middle">OCEANUS VASTARA</text>
+            </Region>
+
+            {/* ── REDWAKE DUNES ── */}
+            <Region id="redwake" label="Redwake Dunes" color="#fb7185" hl={MAP_SHAPES.redwake} open={setActive}>
+              <path className="wm-hit" d="M 436,489 C 446,480 464,481 480,488 C 498,495 516,498 536,498 C 556,498 572,494 590,495 C 606,496 620,497 626,503 C 630,509 622,515 610,517 C 596,520 584,522 570,519 C 552,515 532,515 512,513 C 494,512 470,510 452,504 C 440,500 432,495 436,489 Z" />
+              <text className="wm-label" x="532" y="508" fill="rgba(253,164,175,0.92)" fontSize="5.5" letterSpacing="1" textAnchor="middle">REDWAKE DUNES</text>
             </Region>
 
             {/* ── EMBERFELL ── */}
@@ -227,6 +233,7 @@ export default function WorldMap() {
               { key: 'oceanus', label: 'OCEANUS VASTARA', color: '#06b6d4' },
               { key: 'skyspire', label: 'SKYSPIRE ZENITH ↑', color: '#4fc3f7' },
               { key: 'emberfell', label: 'EMBERFELL', color: '#f97316' },
+              { key: 'redwake', label: 'REDWAKE DUNES', color: '#fb7185' },
               { key: 'oathless', label: 'OATHLESS SKY ⊕', color: '#a855f7' },
             ] as { key: RegionKey; label: string; color: string }[]).map(l => (
               <button key={l.key} type="button" className="wm-legend" onClick={() => setActive(l.key)}>

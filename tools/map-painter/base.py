@@ -7,20 +7,23 @@ shp = {k: parse(v) for k, v in P.items()}
 
 # ───────── 1. land ─────────
 log('masks')
-M = {k: poly_mask(shp[k]) for k in ('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember', 'maw')}
+M = {k: poly_mask(shp[k]) for k in ('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember', 'maw', 'redwake')}
 isle = np.zeros((H, W), bool)
 for cx, cy, rx, ry in ISLES: isle |= ell_mask(cx, cy, rx, ry)
 LBL0 = np.zeros((H, W), np.uint8)
 for i, k in enumerate(('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember'), 1): LBL0[M[k]] = i
 LBL0[isle] = 7
+LBL0[M['redwake']] = 8
 L0 = ndi.binary_closing(LBL0 > 0, iterations=2)
 
 log('coastline')
 sdf = edt(L0) - edt(~L0)
 isle_zone = blur((edt(~isle) < U(24)).astype(np.float32), U(5))
-amp = U(9.5) * (1 - isle_zone) + U(3.2) * isle_zone
-wx = (fbm(6, 4, 101) * U(7) + fbm(14, 3, 108) * U(7)) * (1 - 0.7 * isle_zone)
-wy = (fbm(6, 4, 102) * U(7) + fbm(14, 3, 109) * U(7)) * (1 - 0.7 * isle_zone)
+dune_d = edt(~M['redwake'])
+dune_zone = blur((dune_d < U(14)).astype(np.float32), U(4)) * (1 - isle_zone)
+amp = U(9.5) * (1 - isle_zone - dune_zone) + U(3.2) * isle_zone + U(4) * dune_zone
+wx = (fbm(6, 4, 101) * U(7) + fbm(14, 3, 108) * U(7)) * (1 - 0.7 * isle_zone - 0.55 * dune_zone)
+wy = (fbm(6, 4, 102) * U(7) + fbm(14, 3, 109) * U(7)) * (1 - 0.7 * isle_zone - 0.55 * dune_zone)
 sdf_w = warp(sdf, wx, wy)
 cn = fbm(16, 7, 103, pers=0.62)
 cn = warp(cn, fbm(9, 3, 106) * U(7), fbm(9, 3, 107) * U(7))
@@ -33,7 +36,7 @@ storm_zone = (xx - U(858)) ** 2 + (yy - U(185)) ** 2 < U(72) ** 2
 isl_n = fbm(60, 4, 105)
 coastal = sstep(U(20), U(6), do0) * sstep(U(2.5), U(6), do0)
 thr = 3.0 - 1.15 * band * sstep(U(30), U(6), edt(~isle)) - 0.55 * band - 0.6 * coastal
-islets = (isl_n > thr) & ~LAND & ~str_x & ~storm_zone
+islets = (isl_n > thr) & ~LAND & ~str_x & ~storm_zone & (dune_d > U(9))
 islets &= (xx > U(10)) & (xx < W - U(10)) & (yy > U(10)) & (yy < H - U(6))
 LAND |= islets
 LAND = ndi.binary_opening(LAND, iterations=1)
@@ -42,10 +45,10 @@ sizes = ndi.sum(np.ones_like(lab), lab, range(1, nl + 1))
 LAND = np.isin(lab, np.where(sizes >= 20)[0] + 1)
 
 LBLw = warp(LBL0, fbm(10, 4, 111) * U(9), fbm(10, 4, 112) * U(9), cv2.INTER_NEAREST)
-LBLw[(LBL0 == 7)] = 7; LBLw[(LBL0 != 7) & (LBLw == 7)] = 0
+for k_ in (7, 8): LBLw[(LBL0 == k_)] = k_; LBLw[(LBL0 != k_) & (LBLw == k_)] = 0
 _, (iy, ix) = ndi.distance_transform_edt(LBLw == 0, return_indices=True)
 LBL = np.where(LAND, LBLw[iy, ix], 0).astype(np.uint8)
-LBL[LAND & (band > 0.5) & (LBL0 == 0)] = 7
+LBL[LAND & (band > 0.5) & (LBL0 == 0) & (LBL != 8)] = 7
 dl = edt(LAND); do = edt(~LAND)
 log(f'land {LAND.mean():.3f}  islands {nl}')
 
@@ -96,7 +99,7 @@ for j, (poly, wid, st) in enumerate(ranges):
 ring = np.exp(-((rsol - U(20)) / U(8)) ** 2) * (LBL == 4) * sstep(-0.9, 0.2, fbm(12, 3, 139))
 mt = np.maximum(mt, 0.42 * ring)
 mt *= sstep(0, U(6), dl)
-reg_rough = {1: 0.07, 2: 0.06, 3: 0.12, 4: 0.08, 5: 0.24, 6: 0.24, 7: 0.15}
+reg_rough = {1: 0.07, 2: 0.06, 3: 0.12, 4: 0.08, 5: 0.24, 6: 0.24, 7: 0.15, 8: 0.0}
 rough = np.zeros((H, W), np.float32)
 for k, v in reg_rough.items(): rough += v * blur((LBL == k).astype(np.float32), U(4))
 rough *= (1 - 0.95 * grey)
@@ -119,6 +122,11 @@ h = h * (1 - 0.85 * grey_h) + grey_h * (0.05 + 0.02 * Dh)
 dorm_w = soft(LBL == 2, U(3))
 h += dorm_w * np.clip(vnoise(320, 134), -2, 2) * 0.006
 h -= sstep(U(17), U(8), rsol) * (LBL == 4) * 0.03
+# Redwake: wind-cut dunes
+dune_w = blur((LBL == 8).astype(np.float32), U(1.5))
+dcoord = (xx * np.cos(0.5) + yy * np.sin(0.5)) / U(2.4) + fbm(18, 4, 231) * 2.6
+ripple = (0.5 + 0.5 * np.sin(dcoord)) ** 3
+h = h * (1 - 0.75 * dune_w) + dune_w * (ripple * 0.022 + 0.03 * sstep(0, U(5), dl))
 h = blur(np.where(LAND, h, 0).astype(np.float32), 0.6)
 
 # ───────── 4. rivers ─────────
@@ -219,21 +227,30 @@ RAMPS = {
  5: [(0,(66,60,56)),(0.15,(52,48,46)),(0.4,(42,39,39)),(0.7,(34,31,32)),(1,(70,66,66))],
  6: [(0,(70,52,42)),(0.2,(52,38,32)),(0.5,(40,30,27)),(0.8,(30,24,23)),(1,(56,44,40))],
  7: [(0,(210,198,148)),(0.04,(150,156,104)),(0.1,(70,132,74)),(0.5,(48,110,62)),(0.8,(84,108,74)),(1,(126,128,112))],
+ 8: [(0,(132,80,52)),(1,(120,72,50))],
 }
-wk = np.zeros((8, H, W), np.float32)
-for k in range(1, 8): wk[k] = blur((LBL == k).astype(np.float32), U(2.0))
+NR = 9
+wk = np.zeros((NR, H, W), np.float32)
+for k in range(1, NR): wk[k] = blur((LBL == k).astype(np.float32), U(2.0))
 ws = wk[1:].sum(0) + 1e-6
-for k in range(1, 8): wk[k] /= ws
+for k in range(1, NR): wk[k] /= ws
 col = np.zeros((H, W, 3), np.float32)
-for k in range(1, 8): col += ramp(e, RAMPS[k]) * wk[k][..., None]
+for k in range(1, NR): col += ramp(e, RAMPS[k]) * wk[k][..., None]
 col *= (1 + tex * 0.045)[..., None]
-ROCK = {1: (104,116,132), 2: (62,74,58), 3: (110,108,98), 4: (126,116,96), 5: (30,28,29), 6: (40,30,28), 7: (104,102,86)}
+ROCK = {1: (104,116,132), 2: (62,74,58), 3: (110,108,98), 4: (126,116,96), 5: (30,28,29), 6: (40,30,28), 7: (104,102,86), 8: (150,104,88)}
 rock_c = np.zeros((H, W, 3), np.float32)
-for k in range(1, 8): rock_c += np.array(ROCK[k], np.float32) * wk[k][..., None]
+for k in range(1, NR): rock_c += np.array(ROCK[k], np.float32) * wk[k][..., None]
 rocky = sstep(0.6, 1.8, blur(slope_big, 1.0)) * (1 - 0.4 * wk[2])
 col = col * (1 - rocky[..., None] * 0.7) + rock_c * rocky[..., None] * 0.7
 beach = sstep(U(1.4), U(0.4), dl) * (wk[3] + wk[4] + wk[7] + 0.5 * wk[2]) * LAND
 col = mix(col, beach * 0.55, (186, 172, 128))
+# Redwake sand shifts colour with the Sopher around it
+hue = sstep(-1.2, 1.2, fbm(5, 4, 230))
+hue2 = sstep(-1.0, 1.4, fbm(9, 3, 232))
+sand = np.array([98, 54, 68], np.float32) * (1 - hue)[..., None] + np.array([134, 84, 44], np.float32) * hue[..., None]
+sand = sand * (1 - 0.45 * hue2[..., None]) + np.array([128, 54, 32], np.float32) * 0.45 * hue2[..., None]
+sand = sand * (0.9 + 0.18 * ripple[..., None])
+col = col * (1 - wk[8][..., None]) + sand * wk[8][..., None]
 
 canopy = fbm(200, 2, 142)
 crowns = sstep(-0.1, 0.9, perlin(300, 148) + perlin(150, 149) * 0.6)
@@ -302,7 +319,7 @@ oc = mix(oc, tint * 0.88, (32, 7, 9))
 oc *= (1 + 0.25 * fbm(30, 3, 164) * tint)[..., None]
 fiss = np.exp(-(dx / U(0.9)) ** 2) * fade * (0.65 + 0.35 * sstep(-0.6, 1, fbm(40, 3, 161)))
 crk = np.exp(-(np.abs(fbm(30, 4, 162)) / 0.045) ** 2) * np.exp(-(dx / U(9)) ** 2) * fade
-scar_l = np.clip(fiss + crk * 0.55, 0, 1.2)
+scar_l = np.clip(fiss + crk * 0.55, 0, 1.2) * (1 - blur(LAND.astype(np.float32), 1.5))
 
 st_r = np.hypot(xx - U(858), yy - U(185))
 st_z = np.exp(-(st_r / U(64)) ** 2)
@@ -398,7 +415,7 @@ def trace_paths(mask, min_area=80, eps=1.0):
         out.append('M' + 'L'.join(f'{x:g},{y:g}' for x, y in np.round(a, 1)) + 'Z')
     return ''.join(out)
 regions = {'frozen': LBL == 1, 'dormose': LBL == 2, 'feyvey': LBL == 3, 'regalus': LBL == 4,
-           'ashen': LBL == 5, 'emberfell': LBL == 6, 'oceanus': LBL == 7,
+           'ashen': LBL == 5, 'emberfell': LBL == 6, 'oceanus': LBL == 7, 'redwake': LBL == 8,
            'scar': (tint > 0.35) & ~LAND & (xx > U(436)) & (xx < U(492))}
 shapes = {k: trace_paths(v) for k, v in regions.items()}
 shapes['echo'] = 'M' + 'L'.join(f'{x:g},{y:g}' for x, y in np.round(echo_px[::3] / S, 1))
