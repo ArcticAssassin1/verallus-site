@@ -84,7 +84,7 @@ export const REGIONS = {
     name: 'Ashen Dominion',
     sub: 'POPULATION ~15 MILLION TORN (VORATH)',
     status: 'OVERSEER-CONTROLLED · REVOLUTION FORMING',
-    desc: 'Volcanic ash plains, industrial wastelands and dead zones. The largest population on Verallus, in the worst conditions. A place people escape from, not travel to. The Torn may not legally leave it. "Torn" was imposed by the Overseers as a label meaning shattered. Their original name is Vorath. {{The oppression system was manufactured by scientists and implemented as policy. It was never a historical conquest.}}',
+    desc: 'Volcanic ash plains, industrial wastelands and dead zones. The largest population on Verallus, in the worst conditions. A place people escape from, not travel to. The Torn may not legally leave it. "Torn" was imposed by the Overseers as a label meaning shattered. Their original name is Vorath. {{"Torn" was the Overseers\' own name first, carried by their hidden lineage for thousands of years. The oppression system was manufactured by scientists and implemented as policy. It was never a historical conquest.}}',
     stats: [
       { v: '~15M', l: 'Population' },
       { v: '800K', l: 'Hollowspire' },

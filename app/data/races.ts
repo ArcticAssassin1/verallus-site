@@ -149,7 +149,7 @@ export const RACE_GROUPS: RaceGroup[] = [
           { v: 'Ashen gray', l: 'Skin' },
           { v: 'Vorath', l: 'True name' },
         ],
-        desc: `The largest people on Verallus, in the worst conditions, under Overseer rule in the Ashen Dominion. They may not legally leave it. "Torn" was never their name. The Overseers imposed it, meaning shattered, because stripping a people of their name strips them of who they are. Their real name is Vorath. Most Torn today don't remember it, and the Torn Underground speaks it carefully, as an act of reclamation. The Torn aren't evil. They're suffering. The people who run them are another matter.`,
+        desc: `The largest people on Verallus, in the worst conditions, under Overseer rule in the Ashen Dominion. They may not legally leave it. "Torn" was never their name. The Overseers imposed it, meaning shattered, because stripping a people of their name strips them of who they are. {{It was their own name first: their hidden lineage had called itself Torn for thousands of years. The Vorath carry their oppressors' name.}} Their real name is Vorath. Most Torn today don't remember it, and the Torn Underground speaks it carefully, as an act of reclamation. The Torn aren't evil. They're suffering. The people who run them are another matter.`,
         sections: [
           { title: 'LOOK', items: [
             `Ashen gray skin, from light ash to deep charcoal. It's the first thing anyone notices.`,
@@ -285,7 +285,7 @@ export const RACE_GROUPS: RaceGroup[] = [
           { v: 'Cryobending', l: 'Their craft' },
           { v: 'Frostwardens', l: 'Elite order' },
         ],
-        desc: `The vanished people of Sol'Vastara, in what is now the Frozen Wastes. Their craft was Cryobending, cultivated among them by Auren, the Ninth Absolute, who walked with them as a friend. Their elite order, the Frostwardens, were spiritual warriors. {{The Old Corrupted Gods manipulated the Frostwardens into killing Auren. Treswack destroyed them for it, the civilization collapsed, and the surviving Absolutes erased the whole era from history.}} The Solarii were not the Farrow. The two carried bending down different paths.`,
+        desc: `The vanished people of Sol'Vastara, in what is now the Frozen Wastes. Their craft was Cryobending, cultivated among them by Auren, the Ninth Absolute, who walked with them as a friend. Their elite order, the Frostwardens, were spiritual warriors. {{Auren's blood ran through the Solarii, and he gave them Sofra himself, thousands of years before anyone else awakened. The Frostwardens were the strongest of his line. The Old Corrupted Gods manipulated them into killing him. Treswack destroyed the Frostwardens for it and spared the rest, because Auren had asked. The civilization collapsed within generations anyway, and the surviving Absolutes erased the whole era from history.}} The Solarii were not the Farrow. The two carried bending down different paths.`,
         sections: [
           { title: 'WHAT REMAINS', items: [
             `Frozen temples, crystal palaces and ancient laboratories, above the water and below it. Echo Spirits haunt them.`,

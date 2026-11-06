@@ -206,7 +206,7 @@ export const FACTION_GROUPS: FactionGroup[] = [
           { v: '"Torn"', l: 'The name they imposed' },
           { v: 'Never', l: 'Obey the Council' },
         ],
-        desc: `The rulers of the Ashen Dominion. They named the Vorath "Torn," meaning shattered, run the Apex program that raises children as weapons, fund the SinHarvesters and the Blackwatch, and pour money into Purist politics in the FeyVey Territories. Their strategy is consistent across everything they do: a united Terra Primus is their worst outcome, so they keep the Regalus and FeyVey divided, and they target the hybrids who prove the two belong together. {{The system they run was never a conquest. Scientists manufactured it to create an unlimited supply of research subjects. And the Overseers are being steered without knowing it.}}`,
+        desc: `The rulers of the Ashen Dominion. They named the Vorath "Torn," meaning shattered, run the Apex program that raises children as weapons, fund the SinHarvesters and the Blackwatch, and pour money into Purist politics in the FeyVey Territories. Their strategy is consistent across everything they do: a united Terra Primus is their worst outcome, so they keep the Regalus and FeyVey divided, and they target the hybrids who prove the two belong together. {{The system they run was never a conquest. Scientists manufactured it to create an unlimited supply of research subjects. "Torn" was their own name first, carried by their hidden lineage for thousands of years. And the Overseers are being steered without knowing it.}}`,
         sections: [
           { title: 'WHAT THEY HAVE DONE', items: [
             `The Oracle Mass Purge, run with the FeyVey Purists about 65 to 90 years ago.`,
@@ -463,7 +463,7 @@ export const FACTION_GROUPS: FactionGroup[] = [
           { v: '{{None}}', l: 'Headquarters, members' },
           { v: '{{Cannot}}', l: 'Manifest' },
         ],
-        desc: `Not a faction in any normal sense. Something behind the factions. {{The Old Corrupted Gods: diminished, ancient divinities from before the current order, not among the ten Absolutes, displaced long ago. They can't manifest on Verallus. They seep in through corruption itself and work through influence: they don't possess anyone, they widen the cracks in people already broken. Their goal is revenge on the Absolutes, and since they can't fight them directly, they build mortal vessels to do it for them. The Absolutes don't know they exist. Auren sensed them, and died before he could tell anyone.}}`,
+        desc: `Not a faction in any normal sense. Something behind the factions. {{The Old Corrupted Gods: diminished, ancient divinities from before the current order, not among the ten Absolutes, displaced long ago. The Absolutes believe that older order is only a myth. They can't manifest on Verallus. They seep in through corruption itself and work through influence: they don't possess anyone, they widen the cracks in people already broken. Their goal is revenge on the Absolutes, and since they can't fight them directly, they build mortal vessels to do it for them. The Absolutes don't know they exist. Auren sensed them, and died before he could tell anyone.}}`,
         sections: [
           { title: 'THEIR WORK', items: [
             `{{The Frostwarden conspiracy, about 4,000 years ago: Auren killed by Frostwardens they had cultivated into fear. Their first success.}}`,

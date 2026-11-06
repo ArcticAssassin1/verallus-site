@@ -425,11 +425,11 @@ const OVERRIDE: Record<string, Partial<CodexEntry>> = {
   // factions
   'faction:keeper': { def: 'A single individual: the custodian of the official historical record, and one of the four voices the Elite Six answer to.' },
   'faction:maletonian': { def: 'A Torn Overseer incursion onto Terra Primus, across the Abyssal Scar. Regalus, Dormose and some FeyVey forces stood against it.' },
-  'faction:oldgods': { def: '{{The Old Corrupted Gods: ancient, diminished gods outside the current order of the Absolutes. They seep into Verallus through corruption itself and work through mortal hands.}}' },
+  'faction:oldgods': { def: '{{The Old Corrupted Gods: an older order of gods, corrupted long ago and displaced. The Absolutes believe that order is only a myth. They seep into Verallus through corruption itself and work through mortal hands.}}' },
   'faction:council': { aka: ['Intercontinental Peace Council'], see: ['Accord of Ashes', 'Suppression marks', 'Fake summonses'] },
   'faction:elite6': { see: ['The World Council', "The Prime Corruptor's Prison"] },
   // power
-  'power:absolutes': { tag: '', def: 'Ten gods whose existence radiates Sofra like a star radiates heat. They give no one power on purpose. Eight remain active and two are dead.', cat: 'COSMOLOGY', see: ['Auren', 'Father', 'Treswack', 'The Silent Absolutes', 'Demigods'] },
+  'power:absolutes': { tag: '', def: 'Ten gods whose existence radiates Sofra like a star radiates heat. They give no one power on purpose. Eight remain active and two are dead. {{Auren was the one exception: he gave the Solarii Sofra himself.}}', cat: 'COSMOLOGY', see: ['Auren', 'Father', 'Treswack', 'The Silent Absolutes', 'Demigods'] },
   'power:sopher': { see: ['Sofra', 'Sopher Draw', 'Corruption'] },
   'power:sofra': { see: ['Sopher', 'Tiers', 'Resonance', 'Reserves'] },
   'power:reserves': { see: ['The Thirds', 'Sopher Draw', 'Breakthrough'] },
@@ -502,7 +502,7 @@ function generated(): CodexEntry[] {
 const WRITTEN: CodexEntry[] = [
   // cosmology
   { term: 'Auren', cat: 'COSMOLOGY', kind: 'THE ERASED GOD', ...SECTION.power, aka: ['The Ninth'],
-    def: `{{The Ninth Absolute, who walked among the Solarii as a friend. Frostwardens manipulated into fearing him killed him about 4,000 years ago. His death infused him into the world itself, and his residual energy became the River of Echoes. The surviving Absolutes erased his name from history.}}`,
+    def: `{{The Ninth Absolute, who walked among the Solarii as a friend. His blood ran through them, and he gave them Sofra himself, the only Absolute ever to do so. Frostwardens manipulated into fearing him killed him about 4,000 years ago. His death infused him into the world itself, and his residual energy became the River of Echoes. The surviving Absolutes erased his name from history.}}`,
     see: ['The Absolutes', 'Frostwardens', 'Icebirth Cycle', 'River of Echoes'] },
   { term: 'Father', cat: 'COSMOLOGY', kind: 'ABSOLUTE · THE OVERSEER', ...SECTION.power,
     def: `The overseer among the Absolutes. He intervenes when it's necessary, and he can't have children.`, see: ['The Absolutes', 'Sovara'] },
@@ -561,7 +561,7 @@ const WRITTEN: CodexEntry[] = [
 
   // peoples
   { term: 'Frostwardens', cat: 'PEOPLES', kind: 'THE SOLARII ELITE', ...SECTION.races,
-    def: `The Solarii's elite order of spiritual warriors. {{A faction of them, manipulated into fearing Auren, killed him. Treswack destroyed the order for it, and the Solarii collapsed without them.}}`, see: ['Solarii', 'Auren'] },
+    def: `The Solarii's elite order of spiritual warriors. {{The strongest of Auren's line, born with the most potential for Sofra. A faction of them, manipulated into fearing him, killed him. Treswack destroyed the Frostwardens for it and spared the rest of the Solarii.}}`, see: ['Solarii', 'Auren'] },
   { term: 'Sanori', cat: 'PEOPLES', kind: 'AN ANCIENT PEOPLE', ...SECTION.depths,
     def: `An ancient people, spiritual and reclusive from the start. Their descendants built the Shaleh-Kai Enclave.`, see: ['The Shaleh-Kai Enclave'] },
   { term: 'Vorgath', cat: 'PEOPLES', kind: 'EXTINCT', ...SECTION.depths,
@@ -576,6 +576,10 @@ const WRITTEN: CodexEntry[] = [
     def: `The forgotten era. No school on Verallus teaches it, and most scholars call it myth. {{The surviving Absolutes erased it together after one of their own was killed.}}`, see: ['Auren', 'Solarii'] },
   { term: 'Splitting Ceremony', cat: 'HISTORY', kind: '~4,000 YEARS AGO', ...SECTION.timeline, aka: ['First Sofra Awakening', 'Terra Split'],
     def: `The day the Terra people gathered for a blessing they'd been led to expect, and received it in two shapes. One side became the first Regalus and the other the first FeyVey. Sofra woke across every race at the same time.`, see: ['Regalus', 'FeyVey'] },
+  { term: 'The long dark', cat: 'HISTORY', kind: 'ERA V · ~4,000 TO ~500', ...SECTION.timeline,
+    def: `The rest of Era V after the awakening settled: about three and a half thousand years that almost nobody recorded. A forbidden fusion war was fought late in it.`, see: ['Splitting Ceremony', 'Forbidden fusion war'] },
+  { term: 'Forbidden fusion war', cat: 'HISTORY', kind: '~1,000 YEARS AGO', ...SECTION.timeline,
+    def: `A war fought with forbidden fusions about 1,000 years before Book 1, in Era V's long dark. Its battlefield is the Echo Graves, where echoes still replay the final moments of the dead.`, see: ['The long dark'] },
   { term: 'The Long Centuries', cat: 'HISTORY', kind: 'ERA VI · ~500 TO ~120', ...SECTION.timeline,
     def: `Cultures stabilize and institutions take shape, while tension between the races builds slowly. Bending returns in this era, in secret.`, see: ['The First Bender'] },
   { term: 'The First Bender', cat: 'HISTORY', kind: '~300 TO ~500 YEARS AGO', ...SECTION.timeline,

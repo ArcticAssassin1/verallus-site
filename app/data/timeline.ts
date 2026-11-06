@@ -110,7 +110,7 @@ export const ERAS: Era[] = [
     events: [
       {
         when: 'Over millennia', title: 'Auren among the Solarii',
-        d: `Auren, the Ninth Absolute, spends more time on Verallus than any other. His domain is frozen clarity and stillness. He walks among the Solarii as a friend, and over millennia he builds Cryobending among them as a craft. Their elite order, the Frostwardens, are born with it. {{Father warned him first: he could save these peoples by living among them, and it may cost him his life. Auren heard "may" and bet on it.}}`,
+        d: `Auren, the Ninth Absolute, spends more time on Verallus than any other. His domain is frozen clarity and stillness. He walks among the Solarii as a friend, and over millennia he builds Cryobending among them as a craft. Their elite order, the Frostwardens, are born with it. {{Auren's blood runs through the Solarii, and he gives them Sofra himself, bridging Sopher to Sofra in the people. No other Absolute has ever given mortals Sofra on purpose. The Frostwardens are the strongest of his line, the ones he hones and favors.}} {{Father warned him first: he could save these peoples by living among them, and it may cost him his life. Auren heard "may" and bet on it.}}`,
       },
       {
         when: 'Over millennia', title: `Auren's quiet preparations`,
@@ -122,7 +122,7 @@ export const ERAS: Era[] = [
       },
       {
         when: '~4,000', at: 4000, title: 'The Solarii fall',
-        d: `The Solarii lose their elite order all at once, and the civilization collapses within generations. Sol'Vastara shatters. Its pieces are the Frozen Wastes, some above the water and some below it. {{Treswack destroyed the Frostwardens because a mortal killing an Absolute could not stand as precedent.}}`,
+        d: `The Solarii lose their elite order all at once, and the civilization collapses within generations. Sol'Vastara shatters. Its pieces are the Frozen Wastes, some above the water and some below it. {{Treswack destroyed the Frostwardens because a mortal killing an Absolute could not stand as precedent. Only the Frostwardens. The rest of the Solarii carried Auren's blood too, and they lived on with the annihilation as a warning, because Auren had asked another Absolute not to let them all be erased.}}`,
       },
       {
         when: '~4,000', at: 4000, title: '{{The erasure}}',
@@ -132,9 +132,9 @@ export const ERAS: Era[] = [
   },
   {
     key: 'v', n: 'V', name: 'The First Sofra Awakening', short: 'First Sofra',
-    period: `~4,000 years before Book 1. {{About ten years after Auren's death.}}`, status: 'WELL DOCUMENTED',
-    color: '#fbbf24', rgb: '251,191,36', span: [3990, 3990], lane: 0,
-    summary: `Sofra wakes across the races. Sopher had been maturing for thousands of years, and the imprints the Absolutes left behind had finally settled deep into the planet.`,
+    period: '~4,000 to ~500 years before Book 1', status: 'DOCUMENTED, THEN DARK',
+    color: '#fbbf24', rgb: '251,191,36', span: [3990, 500], lane: 0,
+    summary: `Sofra wakes across the races, {{about ten years after Auren's death}}. Sopher had been maturing for thousands of years, and the imprints the Absolutes left behind had finally settled deep into the planet. After the awakening settles, the era runs on for about three and a half thousand years that almost nobody recorded.`,
     events: [
       {
         when: '~4,000', at: 3990, title: 'The Splitting Ceremony',
@@ -152,12 +152,25 @@ export const ERAS: Era[] = [
           `Chrono: a fluid Sofra all their own, adapted to the water.`,
           `Primidian: the lowest awakening rate of any race. The identity crisis starts here, and so does the turn to technology.`,
           `Vorath: a high rate made unstable by a culture that suppresses emotion. Their leaders start to fear their own people.`,
+          `Solarii: the one people already awake. {{Auren gave them Sofra himself.}} Their civilization is already falling, and the awakening comes too late to save it.`,
           `{{Farrow: already an old, hidden people. They wake with everyone else, carrying a biology nobody will discover for thousands of years.}}`,
         ],
       },
       {
+        when: 'Not long after', title: `{{The Keeper is born}}`,
+        d: `{{Amael, the Keeper of Archives, is born mortal not long after the Splitting Ceremony.}}`,
+      },
+      {
         when: 'Generations after', title: 'Two peoples',
         d: `Over generations the competing stories harden, and the Regalus and FeyVey become separate cultures. What divided them was the story told about the gift.`,
+      },
+      {
+        when: '~4,000 to ~500', title: 'The long dark',
+        d: `About three and a half thousand years that almost nobody recorded. What happened in them survives in ruins and fragments.`,
+      },
+      {
+        when: '~1,000', at: 1000, title: 'The forbidden fusion war',
+        d: `A war fought with forbidden fusions, late in the long dark. Its battlefield is the Echo Graves, where echoes still replay the final moments of the dead.`,
       },
     ],
   },
@@ -197,7 +210,7 @@ export const ERAS: Era[] = [
     events: [
       {
         when: '~120', at: 120, title: 'The Vorath become the Torn',
-        d: `Corrupt scientists conquer the Vorath and see a nation of test subjects. They impose a new name, Torn, meaning shattered. The Ashen Dominion, cut off by dangerous water, becomes a prison continent. The Overseers rewrite history in schools and on monuments, and the lies are still taught today.`,
+        d: `Corrupt scientists conquer the Vorath and see a nation of test subjects. They impose a new name, Torn, meaning shattered. {{It was their own name first. Their hidden lineage had called itself Torn for thousands of years, so the Vorath carry their oppressors' name.}} The Ashen Dominion, cut off by dangerous water, becomes a prison continent. The Overseers rewrite history in schools and on monuments, and the lies are still taught today.`,
       },
       {
         when: '~120', at: 118, title: 'The war',
@@ -384,12 +397,13 @@ export const HIDDEN: Hidden[] = [
   { topic: 'The River of Echoes', believed: `Sacred, and assumed inert. Residual divine energy and nothing more.`, truth: `{{A deliberate construction. Auren encoded a message in it, tuned to Cryobending.}}` },
   { topic: 'The Grey Expanse', believed: `An ancient dead zone. Most guess the cause was geological.`, truth: `{{Treswack made it when he manifested, about 8,000 years ago.}}` },
   { topic: 'The Cataclysm of Four Nations', believed: `A tragic natural disaster.`, truth: `{{A forbidden experiment. A living weapon fused from four Sofra categories understood what it was, and destroyed itself.}}` },
-  { topic: 'The Torn', believed: `Official Torn history: a strong government is needed to contain a violent people.`, truth: `{{The Overseers built their own people's oppression.}}` },
+  { topic: 'The Torn', believed: `Official Torn history: a strong government is needed to contain a violent people.`, truth: `{{The Overseers built their own people's oppression. Even the name was theirs first.}}` },
   { topic: 'Bending', believed: `A fable.`, truth: `{{Real, and older than anyone knows. The Solarii had it more than 4,000 years ago, and the First Bender brought it back 300 to 500 years ago.}}` },
   { topic: 'Oris Faren', believed: `Executed for insubordination about seventeen years ago. Confirmed dead.`, truth: `{{Alive, hidden at the Shaleh-Kai Enclave.}}` },
   { topic: `Arah's mother`, believed: `She died giving birth to him. That's what the village says.`, truth: `{{She's alive. She is Farrow, descended from the First Bender. Varel Shyre is her brother.}}` },
   { topic: 'The Faren name', believed: `An unusual Regalus family name. Nothing more.`, truth: `{{It comes from the Farrow, in memory of the First Bender.}}` },
   { topic: 'The Oracle Purge', believed: `A coordinated political atrocity.`, truth: `{{Cultivated by the Old Corrupted Gods, to silence the people most able to see them.}}` },
+  { topic: 'The gods before the gods', believed: `A myth the Absolutes let persist: a previous generation of gods once reigned.`, truth: `{{True. That older order corrupted, was displaced, and survives as the Old Corrupted Gods. The Absolutes are wrong about their own history.}}` },
   { topic: 'The Shadow Threat', believed: `Nothing. Nobody knows there's anything to know.`, truth: `{{The Old Corrupted Gods have been steering institutions for 4,000 years. Even the Absolutes don't know they exist.}}` },
 ]
 

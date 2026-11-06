@@ -182,7 +182,7 @@ body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, san
 .tl-seg.lane-0 { top: 22px; height: 12px; }
 .tl-seg.lane-1 { top: 37px; height: 6px; }
 .tl-seg.lane-2 { top: 46px; height: 3px; background: rgba(var(--rgb), 0.14); }
-.tl-seg.mark { width: 3px; top: 17px; height: 22px; border-radius: 2px; background: rgba(var(--rgb), 0.55); }
+.tl-seg.mark { width: 3px; top: 17px; height: 22px; border-radius: 2px; background: rgba(var(--rgb), 0.55); z-index: 1; }
 .tl-seg:hover { background: rgba(var(--rgb), 0.55); }
 .tl-seg.on { background: rgba(var(--rgb), 0.85); box-shadow: 0 0 14px rgba(var(--rgb), 0.55); z-index: 2; }
 .tl-seg.lane-2.on { background: rgba(var(--rgb), 0.6); }
