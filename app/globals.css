@@ -75,7 +75,7 @@ body { background: #050810; color: #e2e8f0; font-family: 'Inter', system-ui, san
 }
 .wm-legend:hover, .wm-legend:focus-visible { color: #cbd5e1; outline: none; }
 @media (max-width: 760px) {
-  .wm-scroll svg { min-width: 820px; }
+  .wm-scroll svg { min-width: 940px; }
   .wm-swipe { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {

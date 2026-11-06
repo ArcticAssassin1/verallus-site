@@ -17,26 +17,31 @@ from PIL import Image
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
 S = 2
-W, H = 960 * S, 560 * S
+# The painted extent in map units. The map was drawn on 0..960 x 0..560; the view is zoomed out
+# around it so the Frozen Wastes, Pratvia and the east have room (Dan, 2026-11-06).
+X0, Y0, VW, VH = -60, -70, 1120, 654
+W, H = VW * S, VH * S
+O = np.array([X0, Y0], float)
+CELLK = VW / 960   # keep noise feature sizes the same in map units
 T0 = time.time()
 def log(m): print(f'[{time.time()-T0:5.1f}s] {m}', flush=True)
 
 # ───────────────────────── shapes (viewBox units, copied from WorldMap.tsx) ─────────────────────────
 P = {
- 'frozen':  'M 42,148 C 25,122 15,88 28,55 C 40,25 72,8 118,6 C 162,4 205,20 232,50 C 255,75 258,108 242,138 C 225,165 192,175 155,172 C 118,170 72,162 42,148 Z',
+ 'frozen':  'M 42,148 C 25,122 15,88 28,55 C 40,25 72,4 118,-2 C 170,-10 240,-18 310,-18 C 380,-18 440,-12 490,0 C 526,10 546,30 544,52 C 542,74 520,90 486,98 C 444,104 400,94 356,94 C 314,94 280,98 258,110 C 238,122 222,152 192,166 C 156,176 118,170 72,162 C 58,159 48,154 42,148 Z',
  'dormose': 'M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 224.6,477.2 237.1,486.3 254,493.8 C 254,493.8 248,478 244,466 C 236,442 240,416 237,388 C 234,360 236,334 238,312 C 228,302 218,288 212,270 C 207,236 200,210 186,198 Z',
- 'feyvey':  'M 186,198 C 200,210 207,236 212,270 C 218,288 228,302 238,312 C 262,318 300,322 332,326 C 362,330 388,340 404,352 C 396,330 398,298 408,280 C 418,262 438,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z',
- 'regalus': 'M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 446,400 436,392 C 420,382 406,370 404,352 C 388,340 362,330 332,326 C 300,322 262,318 238,312 Z',
- 'ashen':   'M 525,178 C 538,150 572,128 620,130 C 668,132 718,158 750,195 C 778,228 784,268 775,305 C 765,340 743,368 715,385 C 688,402 658,410 628,412 L 620,452 C 608,472 588,484 562,486 C 536,488 512,474 498,452 C 484,430 480,402 486,382 C 494,362 518,350 524,328 C 530,306 520,286 506,268 C 494,254 486,236 486,214 C 487,198 496,176 525,178 Z',
- 'maw':     'M 482,374 C 495,358 518,348 542,355 C 566,362 585,380 590,402 C 595,422 585,444 566,454 C 547,464 522,460 506,444 C 490,428 480,402 482,374 Z',
+ 'feyvey':  'M 186,198 C 200,210 207,236 212,270 C 218,288 228,302 238,312 C 262,318 300,322 332,326 C 362,330 386,342 400,354 C 394,326 393,288 402,266 C 410,246 432,236 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z',
+ 'regalus': 'M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 448,426 446,412 434,406 C 414,398 400,378 400,354 C 386,342 362,330 332,326 C 300,322 262,318 238,312 Z',
+ 'ashen':   'M 565,178 C 578,150 612,128 660,130 C 708,132 758,158 790,195 C 818,228 824,268 815,305 C 805,340 783,368 755,385 C 728,402 698,410 668,412 L 660,452 C 648,472 628,484 602,486 C 576,488 552,474 538,452 C 524,430 520,402 526,382 C 534,362 558,350 564,328 C 570,306 560,286 546,268 C 534,254 526,236 526,214 C 527,198 536,176 565,178 Z',
+ 'maw':     'M 522,374 C 535,358 558,348 582,355 C 606,362 625,380 630,402 C 635,422 625,444 606,454 C 587,464 562,460 546,444 C 530,428 520,402 522,374 Z',
  'sky':     'M 355,75 C 360,58 380,46 408,44 C 436,42 458,54 462,70 C 466,84 454,98 432,103 C 415,108 390,107 372,100 C 355,93 348,88 355,75 Z',
- 'redwake': 'M 436,489 C 446,480 464,481 480,488 C 498,495 516,498 536,498 C 556,498 572,494 590,495 C 606,496 620,497 626,503 C 630,509 622,515 610,517 C 596,520 584,522 570,519 C 552,515 532,515 512,513 C 494,512 470,510 452,504 C 440,500 432,495 436,489 Z',
- 'pratvia': 'M 438,278 C 450,272 464,278 468,290 C 474,306 472,328 470,344 C 468,358 460,370 448,371 C 436,372 428,362 427,348 C 425,332 425,310 427,296 C 429,286 432,280 438,278 Z',
- 'ember':   'M 640,480 C 650,460 675,448 708,448 C 742,448 768,464 778,486 C 788,508 776,532 754,542 C 732,552 702,550 676,540 C 650,530 630,510 640,480 Z',
+ 'redwake': 'M 436,489 C 448,480 469.5,481 488.6,488 C 510.1,495 531.7,498 555.6,498 C 579.5,498 598.6,494 620.2,495 C 639.3,496 656,497 663.2,503 C 668,509 658.4,515 644.1,517 C 627.3,520 613,522 596.2,519 C 574.7,515 550.8,515 526.9,513 C 505.4,512 476.7,510 455.1,504 C 440.8,500 431.2,495 436,489 Z',
+ 'pratvia': 'M 444,264 C 462,258 482,264 490,280 C 500,300 500,330 496,350 C 492,372 480,388 462,390 C 444,392 430,382 426,364 C 420,342 420,310 424,290 C 428,274 434,266 444,264 Z',
+ 'ember':   'M 680,480 C 690,460 715,448 748,448 C 782,448 808,464 818,486 C 828,508 816,532 794,542 C 772,552 742,550 716,540 C 690,530 670,510 680,480 Z',
 }
 # Skyspire Zenith floats over Pratvia, its own island in the middle (Dan, 2026-11-06).
 # The floating layer keeps its drawn shape ('sky') and is placed by this transform.
-SKY_SCALE, SKY_DX, SKY_DY = 0.55, 223.6, 256.4
+SKY_SCALE, SKY_DX, SKY_DY = 0.75, 154.0, 246.0
 def sky_xf(pts): return np.asarray(pts, float) * SKY_SCALE + np.array([SKY_DX, SKY_DY])
 ISLES = [(180,522,22,11),(242,530,18,9),(298,520,14,8),(348,534,10,6),(395,524,8,5),(458,536,6,4),(515,525,10,6),(565,534,8,5)]
 
@@ -58,12 +63,15 @@ def parse(d):
             cur = p[3]
     return np.array(pts)
 
-def poly_mask(pts, scale=S, shape=(H, W)):
+def poly_mask(pts, scale=S, shape=None):
+    # map-unit points on the main canvas, or local points on a given canvas
+    if shape is None: shape, pts = (H, W), np.asarray(pts, float) - O
     m = np.zeros(shape, np.uint8)
     cv2.fillPoly(m, [np.round(pts * scale * 8).astype(np.int32)], 1, lineType=cv2.LINE_8, shift=3)
     return m.astype(bool)
 
-def ell_mask(cx, cy, rx, ry, shape=(H, W), scale=S):
+def ell_mask(cx, cy, rx, ry, shape=None, scale=S):
+    if shape is None: shape, cx, cy = (H, W), cx - X0, cy - Y0
     m = np.zeros(shape, np.uint8)
     cv2.ellipse(m, (int(cx*scale), int(cy*scale)), (int(rx*scale), int(ry*scale)), 0, 0, 360, 1, -1)
     return m.astype(bool)
@@ -71,6 +79,7 @@ def ell_mask(cx, cy, rx, ry, shape=(H, W), scale=S):
 # ───────────────────────── noise ─────────────────────────
 def vnoise(cells, seed, shape=(H, W), stretch=(1.0, 1.0)):
     h, w = shape
+    if shape == (H, W): cells = cells * CELLK
     r = np.random.default_rng(seed)
     gw = max(2, int(cells * stretch[0])) + 4
     gh = max(2, int(cells * h / w * stretch[1])) + 4
@@ -83,6 +92,7 @@ def vnoise(cells, seed, shape=(H, W), stretch=(1.0, 1.0)):
 
 def perlin(cells, seed, shape=(H, W)):
     h, w = shape
+    if shape == (H, W): cells = cells * CELLK
     r = np.random.default_rng(seed)
     gw = int(cells) + 3; gh = int(cells * h / w) + 3
     ang = r.uniform(0, 2 * np.pi, (gh, gw)).astype(np.float32)
@@ -144,10 +154,11 @@ def line_dist(polys, closed=False):
     """distance in px from a set of polylines given in viewBox units"""
     m = np.ones((H, W), np.uint8)
     for p in polys:
-        cv2.polylines(m, [np.round(np.array(p) * S).astype(np.int32)], closed, 0, 2)
+        cv2.polylines(m, [np.round((np.array(p) - O) * S).astype(np.int32)], closed, 0, 2)
     return edt(m)
 
 yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+xx += X0 * S; yy += Y0 * S   # map units x S, so U(x) comparisons hold
 U = lambda v: v * S   # units → px
 
 

@@ -71,7 +71,7 @@ export default function WorldMap() {
           ))}
 
           <div className="wm-scroll">
-          <svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', display: 'block' }}>
+          <svg viewBox="-60 -70 1120 654" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', display: 'block' }}>
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="4" result="blur" />
@@ -87,48 +87,48 @@ export default function WorldMap() {
             </defs>
 
             {/* Painted relief: terrain, ocean, ice, lava and cloud */}
-            <image href={MAP_IMG.relief} x="0" y="0" width="960" height="560" preserveAspectRatio="none" />
+            <image href={MAP_IMG.relief} x="-60" y="-70" width="1120" height="654" preserveAspectRatio="none" />
 
             {/* ── FROZEN WASTES ── */}
             <Region id="frozen" label="Frozen Wastes" color="#7ecef4" hl={MAP_SHAPES.frozen} open={setActive}>
-              <path className="wm-hit" d="M 42,148 C 25,122 15,88 28,55 C 40,25 72,8 118,6 C 162,4 205,20 232,50 C 255,75 258,108 242,138 C 225,165 192,175 155,172 C 118,170 72,162 42,148 Z" />
-              <text className="wm-label" x="138" y="152" fill="rgba(186,230,253,0.95)" fontSize="7.5" letterSpacing="1.5" textAnchor="middle">FROZEN WASTES</text>
+              <path className="wm-hit" d="M 42,148 C 25,122 15,88 28,55 C 40,25 72,4 118,-2 C 170,-10 240,-18 310,-18 C 380,-18 440,-12 490,0 C 526,10 546,30 544,52 C 542,74 520,90 486,98 C 444,104 400,94 356,94 C 314,94 280,98 258,110 C 238,122 222,152 192,166 C 156,176 118,170 72,162 C 58,159 48,154 42,148 Z" />
+              <text className="wm-label" x="300" y="56" fill="rgba(186,230,253,0.95)" fontSize="8.6" letterSpacing="1.5" textAnchor="middle">FROZEN WASTES</text>
             </Region>
 
             {/* ── TERRA PRIMUS: DORMOSE ── */}
             <Region id="dormose" label="Dormose" color="#4ade80" hl={MAP_SHAPES.dormose} open={setActive}>
               <path className="wm-hit" d="M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 224.6,477.2 237.1,486.3 254,493.8 C 254,493.8 248,478 244,466 C 236,442 240,416 237,388 C 234,360 236,334 238,312 C 228,302 218,288 212,270 C 207,236 200,210 186,198 Z" />
-              <text className="wm-label" x="180" y="345" fill="rgba(134,239,172,0.92)" fontSize="6.5" letterSpacing="1" textAnchor="middle" transform="rotate(-90 180 345)">DORMOSE</text>
+              <text className="wm-label" x="180" y="345" fill="rgba(134,239,172,0.92)" fontSize="7.5" letterSpacing="1" textAnchor="middle" transform="rotate(-90 180 345)">DORMOSE</text>
             </Region>
 
             {/* ── TERRA PRIMUS: FEYVEY ── */}
             <Region id="feyvey" label="FeyVey Territories" color="#a78bfa" hl={MAP_SHAPES.feyvey} open={setActive}>
-              <path className="wm-hit" d="M 186,198 C 200,210 207,236 212,270 C 218,288 228,302 238,312 C 262,318 300,322 332,326 C 362,330 388,340 404,352 C 396,330 398,298 408,280 C 418,262 438,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
-              <text className="wm-label" x="308" y="210" fill="rgba(196,181,253,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">FEYVEY TERRITORIES</text>
+              <path className="wm-hit" d="M 186,198 C 200,210 207,236 212,270 C 218,288 228,302 238,312 C 262,318 300,322 332,326 C 362,330 386,342 400,354 C 394,326 393,288 402,266 C 410,246 432,236 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
+              <text className="wm-label" x="308" y="210" fill="rgba(196,181,253,0.95)" fontSize="8" letterSpacing="1.5" textAnchor="middle">FEYVEY TERRITORIES</text>
             </Region>
 
             {/* ── TERRA PRIMUS: REGALUS ── */}
             <Region id="regalus" label="Regalus Heartlands" color="#fbbf24" hl={MAP_SHAPES.regalus} open={setActive}>
-              <path className="wm-hit" d="M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 446,400 436,392 C 420,382 406,370 404,352 C 388,340 362,330 332,326 C 300,322 262,318 238,312 Z" />
-              <text className="wm-label" x="310" y="415" fill="rgba(253,224,71,0.92)" fontSize="7" letterSpacing="1.5" textAnchor="middle">REGALUS HEARTLANDS</text>
+              <path className="wm-hit" d="M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 448,426 446,412 434,406 C 414,398 400,378 400,354 C 386,342 362,330 332,326 C 300,322 262,318 238,312 Z" />
+              <text className="wm-label" x="310" y="415" fill="rgba(253,224,71,0.92)" fontSize="8" letterSpacing="1.5" textAnchor="middle">REGALUS HEARTLANDS</text>
             </Region>
 
-            <text className="wm-label" x="195" y="168" fill="rgba(226,232,240,0.55)" fontSize="7.5" letterSpacing="2">TERRA PRIMUS</text>
+            <text className="wm-label" x="195" y="168" fill="rgba(226,232,240,0.55)" fontSize="8.6" letterSpacing="2">TERRA PRIMUS</text>
 
             {/* ── ABYSSAL SCAR ── */}
             <Region id="scar" label="Abyssal Scar" color="#ef4444" hl={MAP_SHAPES.scar} open={setActive}>
-              <path className="wm-hit" d="M 446.5,188 L 447.3,203 L 449.1,218 L 452.4,233 L 457.7,248 L 465.1,263 L 473.7,278 L 481.7,293 L 486.9,308 L 487.7,323 L 483.8,338 L 476.5,353 L 467.9,368 L 460.0,383 L 453.9,398 L 450.0,413 L 447.8,428 L 446.7,443 L 446.3,458 L 446.1,473 L 446.0,483 L 478.0,483 L 478.1,473 L 478.3,458 L 478.7,443 L 479.8,428 L 482.0,413 L 485.9,398 L 492.0,383 L 499.9,368 L 508.5,353 L 515.8,338 L 519.7,323 L 518.9,308 L 513.7,293 L 505.7,278 L 497.1,263 L 489.7,248 L 484.4,233 L 481.1,218 L 479.3,203 L 478.5,188 Z" />
-              <path d="M 464.0,198 L 465.0,210 L 466.8,222 L 469.7,234 L 473.9,246 L 479.5,258 L 486.1,270 L 493.0,282 L 499.2,294 L 503.5,306 L 505.0,318 L 503.5,330 L 499.2,342 L 493.0,354 L 486.1,366 L 479.5,378 L 473.9,390 L 469.7,402 L 466.8,414 L 465.0,426 L 464.0,438 L 463.5,450 L 463.2,462 L 463.1,474 L 463.1,474" fill="none" stroke="rgba(239,68,68,0.32)" strokeWidth="12" strokeLinecap="round" filter="url(#softGlow)" style={{ animation: 'scarPulse 2.5s ease-in-out infinite' }} />
-              <text className="wm-label" x="472" y="428" fill="rgba(252,165,165,0.9)" fontSize="6.5" letterSpacing="1.5" textAnchor="middle" writingMode="tb">ABYSSAL SCAR</text>
+              <path className="wm-hit" d="M 454.6,188 L 456.4,203 L 459.6,218 L 464.7,233 L 472.1,248 L 481.6,263 L 492.2,278 L 502.2,293 L 509.7,308 L 513.0,323 L 511.1,338 L 504.6,353 L 495.0,368 L 484.4,383 L 474.5,398 L 466.5,413 L 460.8,428 L 457.1,443 L 455.0,458 L 453.9,473 L 453.5,483 L 485.5,483 L 485.9,473 L 487.0,458 L 489.1,443 L 492.8,428 L 498.5,413 L 506.5,398 L 516.4,383 L 527.0,368 L 536.6,353 L 543.1,338 L 545.0,323 L 541.7,308 L 534.2,293 L 524.2,278 L 513.6,263 L 504.1,248 L 496.7,233 L 491.6,218 L 488.4,203 L 486.6,188 Z" />
+              <path d="M 472.7,198 L 474.7,210 L 477.8,222 L 482.1,234 L 488.0,246 L 495.2,258 L 503.5,270 L 512.0,282 L 519.8,294 L 526.0,306 L 529.4,318 L 529.7,330 L 526.7,342 L 521.0,354 L 513.4,366 L 504.9,378 L 496.6,390 L 489.1,402 L 483.0,414 L 478.4,426 L 475.1,438 L 472.9,450 L 471.6,462 L 470.8,474 L 470.8,474" fill="none" stroke="rgba(239,68,68,0.32)" strokeWidth="12" strokeLinecap="round" filter="url(#softGlow)" style={{ animation: 'scarPulse 2.5s ease-in-out infinite' }} />
+              <text className="wm-label" x="479" y="432" fill="rgba(252,165,165,0.9)" fontSize="7.5" letterSpacing="1.5" textAnchor="middle" writingMode="tb">ABYSSAL SCAR</text>
             </Region>
 
             {/* ── ASHEN DOMINION ── */}
             <Region id="ashen" label="Ashen Dominion" color="#dc2626" hl={MAP_SHAPES.ashen} open={setActive}>
-              <path className="wm-hit" d="M 525,178 C 538,150 572,128 620,130 C 668,132 718,158 750,195 C 778,228 784,268 775,305 C 765,340 743,368 715,385 C 688,402 658,410 628,412 L 620,452 C 608,472 588,484 562,486 C 536,488 512,474 498,452 C 484,430 480,402 486,382 C 494,362 518,350 524,328 C 530,306 520,286 506,268 C 494,254 486,236 486,214 C 487,198 496,176 525,178 Z" />
-              <text className="wm-label" x="645" y="268" fill="rgba(209,213,219,0.85)" fontSize="6" letterSpacing="1" textAnchor="middle">GREY EXPANSE</text>
-              <text className="wm-label" x="645" y="278" fill="rgba(156,163,175,0.75)" fontSize="5" letterSpacing="0.8" textAnchor="middle">NULL ZONE</text>
-              <text className="wm-label" x="538" y="410" fill="rgba(252,165,165,0.85)" fontSize="5.5" letterSpacing="0.8" textAnchor="middle">MAWLANDS</text>
-              <text className="wm-label" x="652" y="148" fill="rgba(248,113,113,0.95)" fontSize="8" letterSpacing="2" textAnchor="middle">ASHEN DOMINION</text>
+              <path className="wm-hit" d="M 565,178 C 578,150 612,128 660,130 C 708,132 758,158 790,195 C 818,228 824,268 815,305 C 805,340 783,368 755,385 C 728,402 698,410 668,412 L 660,452 C 648,472 628,484 602,486 C 576,488 552,474 538,452 C 524,430 520,402 526,382 C 534,362 558,350 564,328 C 570,306 560,286 546,268 C 534,254 526,236 526,214 C 527,198 536,176 565,178 Z" />
+              <text className="wm-label" x="685" y="268" fill="rgba(209,213,219,0.85)" fontSize="6.9" letterSpacing="1" textAnchor="middle">GREY EXPANSE</text>
+              <text className="wm-label" x="685" y="278" fill="rgba(156,163,175,0.75)" fontSize="5.8" letterSpacing="0.8" textAnchor="middle">NULL ZONE</text>
+              <text className="wm-label" x="578" y="410" fill="rgba(252,165,165,0.85)" fontSize="6.3" letterSpacing="0.8" textAnchor="middle">MAWLANDS</text>
+              <text className="wm-label" x="692" y="148" fill="rgba(248,113,113,0.95)" fontSize="9.2" letterSpacing="2" textAnchor="middle">ASHEN DOMINION</text>
             </Region>
 
             {/* ── OCEANUS VASTARA ── */}
@@ -137,50 +137,50 @@ export default function WorldMap() {
                 <ellipse key={i} className="wm-hit" cx={cx} cy={cy} rx={rx + 4} ry={ry + 4} />
               ))}
               <circle cx="242" cy="530" r="2.5" fill="#22d3ee" opacity="0.8" style={{ animation: 'pulse 2.5s ease-in-out infinite' }} />
-              <text className="wm-label" x="240" y="521" fill="rgba(103,232,249,0.92)" fontSize="6" letterSpacing="0.8" textAnchor="middle">TIDALUS</text>
-              <text className="wm-label" x="350" y="548" fill="rgba(103,232,249,0.8)" fontSize="7" letterSpacing="2" textAnchor="middle">OCEANUS VASTARA</text>
+              <text className="wm-label" x="240" y="521" fill="rgba(103,232,249,0.92)" fontSize="6.9" letterSpacing="0.8" textAnchor="middle">TIDALUS</text>
+              <text className="wm-label" x="350" y="548" fill="rgba(103,232,249,0.8)" fontSize="8" letterSpacing="2" textAnchor="middle">OCEANUS VASTARA</text>
             </Region>
 
             {/* ── REDWAKE DUNES ── */}
             <Region id="redwake" label="Redwake Dunes" color="#fb7185" hl={MAP_SHAPES.redwake} open={setActive}>
-              <path className="wm-hit" d="M 436,489 C 446,480 464,481 480,488 C 498,495 516,498 536,498 C 556,498 572,494 590,495 C 606,496 620,497 626,503 C 630,509 622,515 610,517 C 596,520 584,522 570,519 C 552,515 532,515 512,513 C 494,512 470,510 452,504 C 440,500 432,495 436,489 Z" />
-              <text className="wm-label" x="532" y="508" fill="rgba(253,164,175,0.92)" fontSize="5.5" letterSpacing="1" textAnchor="middle">REDWAKE DUNES</text>
+              <path className="wm-hit" d="M 436,489 C 448,480 469.5,481 488.6,488 C 510.1,495 531.7,498 555.6,498 C 579.5,498 598.6,494 620.2,495 C 639.3,496 656,497 663.2,503 C 668,509 658.4,515 644.1,517 C 627.3,520 613,522 596.2,519 C 574.7,515 550.8,515 526.9,513 C 505.4,512 476.7,510 455.1,504 C 440.8,500 431.2,495 436,489 Z" />
+              <text className="wm-label" x="551" y="507" fill="rgba(253,164,175,0.92)" fontSize="6.3" letterSpacing="1" textAnchor="middle">REDWAKE DUNES</text>
             </Region>
 
             {/* ── EMBERFELL ── */}
             <Region id="emberfell" label="Emberfell" color="#f97316" hl={MAP_SHAPES.emberfell} open={setActive}>
-              <path className="wm-hit" d="M 640,480 C 650,460 675,448 708,448 C 742,448 768,464 778,486 C 788,508 776,532 754,542 C 732,552 702,550 676,540 C 650,530 630,510 640,480 Z" />
-              <circle cx="694" cy="486" r="3.2" fill="rgba(255,140,60,0.7)" filter="url(#softGlow)" style={{ animation: 'pulse 1.8s ease-in-out infinite' }} />
-              <circle cx="724" cy="478" r="2.6" fill="rgba(255,140,60,0.6)" filter="url(#softGlow)" style={{ animation: 'pulse 2.2s ease-in-out 0.6s infinite' }} />
-              <text className="wm-label" x="706" y="522" fill="rgba(253,186,116,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">EMBERFELL</text>
+              <path className="wm-hit" d="M 680,480 C 690,460 715,448 748,448 C 782,448 808,464 818,486 C 828,508 816,532 794,542 C 772,552 742,550 716,540 C 690,530 670,510 680,480 Z" />
+              <circle cx="734" cy="486" r="3.2" fill="rgba(255,140,60,0.7)" filter="url(#softGlow)" style={{ animation: 'pulse 1.8s ease-in-out infinite' }} />
+              <circle cx="764" cy="478" r="2.6" fill="rgba(255,140,60,0.6)" filter="url(#softGlow)" style={{ animation: 'pulse 2.2s ease-in-out 0.6s infinite' }} />
+              <text className="wm-label" x="746" y="522" fill="rgba(253,186,116,0.95)" fontSize="8" letterSpacing="1.5" textAnchor="middle">EMBERFELL</text>
             </Region>
 
             {/* ── SKYSPIRE ZENITH: Primeridia floats over Pratvia, its own island ── */}
             <Region id="skyspire" label="Skyspire Zenith" color="#4fc3f7" hl={MAP_SHAPES.pratvia} open={setActive}>
-              <path className="wm-hit" d="M 438,278 C 450,272 464,278 468,290 C 474,306 472,328 470,344 C 468,358 460,370 448,371 C 436,372 428,362 427,348 C 425,332 425,310 427,296 C 429,286 432,280 438,278 Z" />
-              <text className="wm-label" x="452" y="364" fill="rgba(240,171,252,0.9)" fontSize="5" letterSpacing="1" textAnchor="middle">PRATVIA</text>
+              <path className="wm-hit" d="M 444,264 C 462,258 482,264 490,280 C 500,300 500,330 496,350 C 492,372 480,388 462,390 C 444,392 430,382 426,364 C 420,342 420,310 424,290 C 428,274 434,266 444,264 Z" />
+              <text className="wm-label" x="462" y="383" fill="rgba(240,171,252,0.9)" fontSize="5.8" letterSpacing="1" textAnchor="middle">PRATVIA</text>
               <g style={{ animation: 'floatUp 4s ease-in-out infinite' }}>
                 <image href={MAP_IMG.skyspire} x={SKY_BOX.x} y={SKY_BOX.y} width={SKY_BOX.w} height={SKY_BOX.h} />
-                <path className="wm-hit" d="M 416.1,294.9 C 419.4,285 432.6,278.4 448,277.3 C 464.5,276.2 477.7,283.9 479.9,293.8 C 482.1,305.9 474.4,318 460.1,323.5 C 450.2,326.8 435.9,325.7 426,320.2 C 416.1,313.6 412.8,304.8 416.1,294.9 Z" />
-                <text className="wm-label" x="449" y="258" fill="rgba(125,211,252,0.95)" fontSize="6.5" letterSpacing="1.4" textAnchor="middle">SKYSPIRE ZENITH</text>
-                <text className="wm-label" x="449" y="265" fill="rgba(125,211,252,0.72)" fontSize="4.6" letterSpacing="1" textAnchor="middle">PRIMERIDIA · NEUTRAL</text>
+                <path className="wm-hit" d="M 416.5,298.5 C 421.0,285.0 439.0,276.0 460.0,274.5 C 482.5,273.0 500.5,283.5 503.5,297.0 C 506.5,313.5 496.0,330.0 476.5,337.5 C 463.0,342.0 443.5,340.5 430.0,333.0 C 416.5,324.0 412.0,312.0 416.5,298.5 Z" />
+                <text className="wm-label" x="460" y="248" fill="rgba(125,211,252,0.95)" fontSize="7.5" letterSpacing="1.4" textAnchor="middle">SKYSPIRE ZENITH</text>
+                <text className="wm-label" x="460" y="255.5" fill="rgba(125,211,252,0.72)" fontSize="5.3" letterSpacing="1" textAnchor="middle">PRIMERIDIA · NEUTRAL</text>
               </g>
             </Region>
 
             {/* ── OATHLESS SKY (pocket dimension) ── */}
             <Region id="oathless" label="Oathless Sky" color="#a855f7" open={setActive} float slow>
-              <image href={MAP_IMG.storm} x={858 - STORM_R} y={185 - STORM_R} width={STORM_R * 2} height={STORM_R * 2}
-                style={{ animation: 'spinRing 140s linear infinite', transformOrigin: '858px 185px' }} />
-              <circle className="wm-hit" cx="858" cy="185" r="40" />
-              <circle cx="858" cy="185" r="10" fill="rgba(46,16,101,0.55)" stroke="rgba(192,132,252,0.7)" strokeWidth="0.8" />
-              <text className="wm-label" x="858" y="189.5" fill="rgba(233,213,255,0.95)" fontSize="11" fontWeight="700" textAnchor="middle">K</text>
-              <text className="wm-label" x="858" y="236" fill="rgba(216,180,254,0.92)" fontSize="6" letterSpacing="1.2" textAnchor="middle">OATHLESS SKY</text>
-              <text className="wm-label" x="858" y="244" fill="rgba(216,180,254,0.7)" fontSize="5" letterSpacing="0.8" textAnchor="middle">POCKET DIMENSION</text>
+              <image href={MAP_IMG.storm} x={898 - STORM_R} y={185 - STORM_R} width={STORM_R * 2} height={STORM_R * 2}
+                style={{ animation: 'spinRing 140s linear infinite', transformOrigin: '898px 185px' }} />
+              <circle className="wm-hit" cx="898" cy="185" r="40" />
+              <circle cx="898" cy="185" r="10" fill="rgba(46,16,101,0.55)" stroke="rgba(192,132,252,0.7)" strokeWidth="0.8" />
+              <text className="wm-label" x="898" y="189.5" fill="rgba(233,213,255,0.95)" fontSize="12.6" fontWeight="700" textAnchor="middle">K</text>
+              <text className="wm-label" x="898" y="236" fill="rgba(216,180,254,0.92)" fontSize="6.9" letterSpacing="1.2" textAnchor="middle">OATHLESS SKY</text>
+              <text className="wm-label" x="898" y="244" fill="rgba(216,180,254,0.7)" fontSize="5.8" letterSpacing="0.8" textAnchor="middle">POCKET DIMENSION</text>
             </Region>
 
             {/* ── RIVER OF ECHOES ── */}
             <path d={MAP_SHAPES.echo} className="wm-echo" />
-            <text className="wm-label" x="262" y="408" fill="rgba(165,226,250,0.85)" fontSize="5.5" letterSpacing="0.6" textAnchor="middle">RIVER OF ECHOES</text>
+            <text className="wm-label" x="262" y="408" fill="rgba(165,226,250,0.85)" fontSize="6.3" letterSpacing="0.6" textAnchor="middle">RIVER OF ECHOES</text>
             {/* Astral Threshold */}
             <polygon points="265,348 269,338 273,348" fill="rgba(245,158,11,0.75)" stroke="rgba(4,7,14,0.6)" strokeWidth="0.6" />
             <circle cx="269" cy="338" r="2" fill="rgba(251,191,36,0.95)" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
@@ -190,36 +190,36 @@ export default function WorldMap() {
               <circle cx="298" cy="428" r="9" fill="none" stroke="rgba(251,191,36,0.35)" strokeWidth="0.8" style={{ animation: 'ringPulse 2.8s ease-in-out infinite' }} />
               <circle cx="298" cy="428" r="3.5" fill="#fbbf24" opacity="0.95" style={{ animation: 'cityPulse 2.8s ease-in-out infinite' }} />
             </g>
-            <text className="wm-label" x="298" y="446" fill="rgba(253,224,71,0.95)" fontSize="6.5" letterSpacing="1" textAnchor="middle">SOLHAVEN</text>
+            <text className="wm-label" x="298" y="446" fill="rgba(253,224,71,0.95)" fontSize="7.5" letterSpacing="1" textAnchor="middle">SOLHAVEN</text>
             <g filter="url(#cityGlow)" onClick={() => setActive('feyvey')} style={{ cursor: 'pointer' }}>
               <circle cx="335" cy="222" r="9" fill="none" stroke="rgba(167,139,250,0.35)" strokeWidth="0.8" style={{ animation: 'ringPulse 3.2s ease-in-out 0.5s infinite' }} />
               <circle cx="335" cy="222" r="3.5" fill="#c4b5fd" opacity="0.95" style={{ animation: 'cityPulse 3.2s ease-in-out 0.5s infinite' }} />
             </g>
-            <text className="wm-label" x="335" y="240" fill="rgba(221,214,254,0.95)" fontSize="6.5" letterSpacing="1" textAnchor="middle">ILLUMIS</text>
+            <text className="wm-label" x="335" y="240" fill="rgba(221,214,254,0.95)" fontSize="7.5" letterSpacing="1" textAnchor="middle">ILLUMIS</text>
             <g filter="url(#cityGlow)" onClick={() => setActive('dormose')} style={{ cursor: 'pointer' }}>
               <circle cx="170" cy="372" r="3.5" fill="#86efac" opacity="0.92" style={{ animation: 'cityPulse 3.5s ease-in-out 1s infinite' }} />
             </g>
-            <text className="wm-label" x="188" y="376" fill="rgba(134,239,172,0.92)" fontSize="6" letterSpacing="0.8">ROOTHOLD</text>
+            <text className="wm-label" x="188" y="376" fill="rgba(134,239,172,0.92)" fontSize="6.9" letterSpacing="0.8">ROOTHOLD</text>
             <g filter="url(#cityGlow)" onClick={() => setActive('ashen')} style={{ cursor: 'pointer' }}>
-              <circle cx="648" cy="322" r="9" fill="none" stroke="rgba(248,113,113,0.35)" strokeWidth="0.8" style={{ animation: 'ringPulse 3s ease-in-out 0.3s infinite' }} />
-              <circle cx="648" cy="322" r="3.5" fill="#f87171" opacity="0.92" style={{ animation: 'cityPulse 3s ease-in-out 0.3s infinite' }} />
+              <circle cx="688" cy="322" r="9" fill="none" stroke="rgba(248,113,113,0.35)" strokeWidth="0.8" style={{ animation: 'ringPulse 3s ease-in-out 0.3s infinite' }} />
+              <circle cx="688" cy="322" r="3.5" fill="#f87171" opacity="0.92" style={{ animation: 'cityPulse 3s ease-in-out 0.3s infinite' }} />
             </g>
-            <text className="wm-label" x="648" y="340" fill="rgba(252,165,165,0.95)" fontSize="6.5" letterSpacing="1" textAnchor="middle">HOLLOWSPIRE</text>
+            <text className="wm-label" x="688" y="340" fill="rgba(252,165,165,0.95)" fontSize="7.5" letterSpacing="1" textAnchor="middle">HOLLOWSPIRE</text>
 
             {/* Compass */}
-            <g transform="translate(878,490)">
+            <g transform="translate(978,514)">
               <circle r="22" fill="rgba(5,8,16,0.72)" stroke="rgba(245,158,11,0.3)" strokeWidth="0.8" />
               <path d="M 0,-16 L 0,-8 M 0,8 L 0,16 M -16,0 L -8,0 M 8,0 L 16,0" stroke="rgba(245,158,11,0.45)" strokeWidth="0.8" />
               <polygon points="0,-18 -3,-10 3,-10" fill="rgba(245,158,11,0.75)" />
-              <text className="wm-label" y="30" fill="rgba(245,158,11,0.7)" fontSize="7" letterSpacing="1" textAnchor="middle">N</text>
+              <text className="wm-label" y="30" fill="rgba(245,158,11,0.7)" fontSize="8" letterSpacing="1" textAnchor="middle">N</text>
             </g>
 
             {/* Scale */}
-            <g transform="translate(50,518)">
+            <g transform="translate(-10,544)">
               <line x1="0" y1="0" x2="60" y2="0" stroke="rgba(245,158,11,0.6)" strokeWidth="0.8" />
               <line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(245,158,11,0.6)" strokeWidth="0.8" />
               <line x1="60" y1="-4" x2="60" y2="4" stroke="rgba(245,158,11,0.6)" strokeWidth="0.8" />
-              <text className="wm-label" x="30" y="-7" fill="rgba(245,158,11,0.75)" fontSize="5.5" letterSpacing="0.8" textAnchor="middle">~2,000 KM</text>
+              <text className="wm-label" x="30" y="-7" fill="rgba(245,158,11,0.75)" fontSize="6.3" letterSpacing="0.8" textAnchor="middle">~2,000 KM</text>
             </g>
           </svg>
           </div>
