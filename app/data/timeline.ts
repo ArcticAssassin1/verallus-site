@@ -210,7 +210,7 @@ export const ERAS: Era[] = [
     events: [
       {
         when: '~120', at: 120, title: 'The Vorath become the Torn',
-        d: `Corrupt scientists conquer the Vorath and see a nation of test subjects. They impose a new name, Torn, meaning shattered. {{It was their own name first. Their hidden lineage had called itself Torn for thousands of years, so the Vorath carry their oppressors' name.}} The Ashen Dominion, cut off by dangerous water, becomes a prison continent. The Overseers rewrite history in schools and on monuments, and the lies are still taught today.`,
+        d: `Corrupt scientists seize the Vorath from inside, after centuries within its leadership, and see a nation of test subjects. They impose a new name, Torn, meaning shattered. {{It was their own name first. Their hidden lineage had called itself Torn for thousands of years, so the Vorath carry their oppressors' name.}} The Ashen Dominion, cut off by dangerous water, becomes a prison continent. The Overseers rewrite history in schools and on monuments, and the lies are still taught today.`,
       },
       {
         when: '~120', at: 118, title: 'The war',

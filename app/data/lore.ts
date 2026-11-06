@@ -332,7 +332,7 @@ export const OFFMAP: OffMapSite[] = [
     desc: `Where great battles were fought or large experiments run, Sofra sank into the ground for good. Long habitation by Stage 3 creatures makes them too. They radiate ambient Sofra without stopping. In small doses that helps, and lower-tier users who stay too long risk corruption. They cluster wherever history was most violent.`,
     sections: [
       { title: 'KNOWN CLUSTERS', items: [
-        `Below Khaervos's storm, where centuries of challengers fought and died in the water.`,
+        `Below Khaervos's storm, where decades of challengers fought and died in the water.`,
         `Blackwatch Yard in the Ashen Dominion, forming now out of decades of forbidden research.`,
       ] },
     ],

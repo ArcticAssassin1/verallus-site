@@ -232,13 +232,13 @@ export const REGIONS = {
     stats: [
       { v: 'KHAERVOS', l: 'Ruler' },
       { v: '6', l: 'Deterrence Layers' },
-      { v: 'CENTURIES', l: 'Storm Age' },
+      { v: 'DECADES', l: 'Storm Age' },
       { v: 'Tier 9+', l: 'To Enter Uninvited' },
     ],
     locations: [
       { n: 'Tempest Throne', d: "Dark stone with chaotic cyan conduits. Gravity traps, looping corridors, an observation deck over Verallus. Maera's quarters are lavish and inescapable.", c: '#a855f7' },
-      { n: 'The Chaos Storm', d: 'A centuries-old storm that reaches too high to fly over. Storm creatures live in it. Impassable for almost everyone.', c: '#a855f7' },
-      { n: 'The Drowned Challengers', d: 'Echo Wells in the ocean below, left by centuries of challengers who died trying. Approaching means sailing through a graveyard.', c: '#6b7280' },
+      { n: 'The Chaos Storm', d: 'A storm decades in the building, too high to fly over. Storm creatures live in it. Impassable for almost everyone.', c: '#a855f7' },
+      { n: 'The Drowned Challengers', d: 'Echo Wells in the ocean below, left by decades of challengers who died trying. Approaching means sailing through a graveyard.', c: '#6b7280' },
     ],
     arah: "Khaervos is not a SinHarvester. He is a separate threat, a demigod outside every faction's authority. {{His confrontation with Arah comes in Book 6, and it is older and more personal than either of them understands going in.}}",
     warn: { text: "Khaervos is the son of Treswack, Absolute of chaos. His existence breaks cosmic law. {{Treswack does not know his son exists until Book 6.}}" },

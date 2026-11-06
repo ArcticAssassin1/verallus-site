@@ -272,7 +272,7 @@ export const RACE_GROUPS: RaceGroup[] = [
         people: [
           { n: '{{Varel Shyre}}', d: `{{Farrow, hiding as Regalus on the Elite Six.}}` },
           { n: `{{Arah's mother}}`, d: `{{Farrow, with no Sofra of her own. She carried the catalyst and passed it to her son.}}` },
-          { n: '{{Arah Faren}}', d: `{{Half Farrow, and he doesn't know it until Books 4 and 5.}}` },
+          { n: '{{Arah Faren}}', d: `{{Half Farrow. He learns it at the Enclave, at the start of Book 3.}}` },
         ],
       },
       {
