@@ -179,7 +179,7 @@ export const REGIONS = {
     name: 'Skyspire Zenith',
     sub: 'PRIMIDIAN TERRITORY · CENTRAL · NEUTRAL',
     status: 'TECH-DOMINANT · DEEPLY UNEQUAL · ETHICAL CRISIS ONGOING',
-    desc: 'Floats above the center of Verallus, neutral and reachable by air from every continent. The world\'s trade and diplomatic hub. The altitude divide between the upper and lower city is one of the starkest inequalities on Verallus. Primeridia is a sky utopia. Pratvia beneath it is neon chaos and survival.',
+    desc: 'Floats above the center of Verallus, over an island of its own that touches no other land. Bridges reach Primeridia from the countries around it, and others come by port. Every continent can reach it by air. Neutral, and the world\'s trade and diplomatic hub. The altitude divide between the upper and lower city is one of the starkest inequalities on Verallus. Primeridia is a sky utopia. Pratvia beneath it is neon chaos and survival.',
     stats: [
       { v: '~5M', l: 'Population' },
       { v: '3M', l: 'Pratvia' },
@@ -189,7 +189,7 @@ export const REGIONS = {
     locations: [
       { n: 'Primeridia', d: 'Sky island at 2,000 feet. Glass spires, floating gardens, clean energy. Ethical Research Alliance headquarters.', c: '#4fc3f7' },
       { n: 'Irogarth', d: 'Irogarth of Primeridia, home of the Proctor\'s facility: training grounds, labs, military yards and research wings. {{It was built under the protection of Purist FeyVey officials who found the Proctor\'s hybrid research useful.}}', c: '#4fc3f7' },
-      { n: 'Pratvia', d: 'Ground level beneath Primeridia. 3 million people, neon, scrap towers and ten layers of streets. The black market capital. Kaisho grew up here.', c: '#4fc3f7' },
+      { n: 'Pratvia', d: 'Ground level beneath Primeridia, on Skyspire\'s own island. 3 million people, neon, scrap towers and ten layers of streets. The black market capital. Kaisho grew up here.', c: '#4fc3f7' },
       { n: 'Ionova', d: 'Highest floating city, at 5,000 feet. Gothic spires, the Auric Reactor, military installations. Seat of the Primidian government.', c: '#4fc3f7' },
       { n: 'Citadel of Last Scribe', d: 'Primeridia\'s grand public library, open to all races. Records stored in living crystal. Scattered references to forbidden techniques and lost civilizations, framed as myth.', c: '#f59e0b' },
     ],

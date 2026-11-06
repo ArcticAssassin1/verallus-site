@@ -7,13 +7,14 @@ shp = {k: parse(v) for k, v in P.items()}
 
 # ───────── 1. land ─────────
 log('masks')
-M = {k: poly_mask(shp[k]) for k in ('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember', 'maw', 'redwake')}
+M = {k: poly_mask(shp[k]) for k in ('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember', 'maw', 'redwake', 'pratvia')}
 isle = np.zeros((H, W), bool)
 for cx, cy, rx, ry in ISLES: isle |= ell_mask(cx, cy, rx, ry)
 LBL0 = np.zeros((H, W), np.uint8)
 for i, k in enumerate(('frozen', 'dormose', 'feyvey', 'regalus', 'ashen', 'ember'), 1): LBL0[M[k]] = i
 LBL0[isle] = 7
 LBL0[M['redwake']] = 8
+LBL0[M['pratvia']] = 9
 L0 = ndi.binary_closing(LBL0 > 0, iterations=2)
 
 log('coastline')
@@ -21,6 +22,9 @@ sdf = edt(L0) - edt(~L0)
 isle_zone = blur((edt(~isle) < U(24)).astype(np.float32), U(5))
 dune_d = edt(~M['redwake'])
 dune_zone = blur((dune_d < U(14)).astype(np.float32), U(4)) * (1 - isle_zone)
+prat_d = edt(~M['pratvia'])
+prat_zone = blur((prat_d < U(20)).astype(np.float32), U(4)) * (1 - isle_zone) * (1 - dune_zone)
+dune_zone = dune_zone + prat_zone * 0.9
 amp = U(9.5) * (1 - isle_zone - dune_zone) + U(3.2) * isle_zone + U(4) * dune_zone
 wx = (fbm(6, 4, 101) * U(7) + fbm(14, 3, 108) * U(7)) * (1 - 0.7 * isle_zone - 0.55 * dune_zone)
 wy = (fbm(6, 4, 102) * U(7) + fbm(14, 3, 109) * U(7)) * (1 - 0.7 * isle_zone - 0.55 * dune_zone)
@@ -31,21 +35,28 @@ LAND = (sdf_w + cn * amp) > 0
 
 do0 = edt(~LAND)
 band = sstep(U(474), U(506), yy) * sstep(U(125), U(150), xx) * (1 - sstep(U(600), U(625), xx))
-str_x = (xx > U(432)) & (xx < U(494)) & (yy > U(170)) & (yy < U(500))
+str_x = (xx > U(430)) & (xx < U(545)) & (yy > U(170)) & (yy < U(500))
 storm_zone = (xx - U(858)) ** 2 + (yy - U(185)) ** 2 < U(72) ** 2
 isl_n = fbm(60, 4, 105)
 coastal = sstep(U(20), U(6), do0) * sstep(U(2.5), U(6), do0)
 thr = 3.0 - 1.15 * band * sstep(U(30), U(6), edt(~isle)) - 0.55 * band - 0.6 * coastal
-islets = (isl_n > thr) & ~LAND & ~str_x & ~storm_zone & (dune_d > U(9))
+islets = (isl_n > thr) & ~LAND & ~str_x & ~storm_zone & (dune_d > U(9)) & (prat_d > U(14))
 islets &= (xx > U(10)) & (xx < W - U(10)) & (yy > U(10)) & (yy < H - U(6))
 LAND |= islets
 LAND = ndi.binary_opening(LAND, iterations=1)
 lab, nl = ndi.label(LAND)
 sizes = ndi.sum(np.ones_like(lab), lab, range(1, nl + 1))
 LAND = np.isin(lab, np.where(sizes >= 20)[0] + 1)
+# Pratvia touches nothing by land: keep a moat around it
+LAND[(prat_d > U(5)) & (prat_d < U(12))] = False
+LAND = ndi.binary_opening(LAND, iterations=1)
+lab, nl = ndi.label(LAND)
+sizes = ndi.sum(np.ones_like(lab), lab, range(1, nl + 1))
+small_near = [i + 1 for i in range(nl) if sizes[i] < 3000 and prat_d[lab == i + 1].min() < U(20) and not M['pratvia'][lab == i + 1].any()]
+LAND[np.isin(lab, small_near)] = False
 
 LBLw = warp(LBL0, fbm(10, 4, 111) * U(9), fbm(10, 4, 112) * U(9), cv2.INTER_NEAREST)
-for k_ in (7, 8): LBLw[(LBL0 == k_)] = k_; LBLw[(LBL0 != k_) & (LBLw == k_)] = 0
+for k_ in (7, 8, 9): LBLw[(LBL0 == k_)] = k_; LBLw[(LBL0 != k_) & (LBLw == k_)] = 0
 _, (iy, ix) = ndi.distance_transform_edt(LBLw == 0, return_indices=True)
 LBL = np.where(LAND, LBLw[iy, ix], 0).astype(np.uint8)
 LBL[LAND & (band > 0.5) & (LBL0 == 0) & (LBL != 8)] = 7
@@ -62,8 +73,8 @@ mw_ = warp(M['maw'].astype(np.float32), fbm(7, 4, 126) * U(13), fbm(7, 4, 127) *
 bm = blur(mw_, U(5))
 maw = sstep(0.38, 0.56, bm + fbm(20, 5, 123) * 0.38 * sstep(0.02, 0.4, bm)) * (LBL == 5)
 maw = blur(maw, 1.2)
-east_sea = ~LAND & (xx > U(436)) & (xx < U(492)) & (yy > U(230)) & (yy < U(490))
-bone = soft((edt(~east_sea) < U(22) + zn * U(6)) & TP & (yy > U(244)), U(2.5))
+east_sea = ~LAND & (xx > U(400)) & (xx < U(545)) & (yy > U(230)) & (yy < U(490))
+bone = soft((edt(~east_sea) < U(22) + zn * U(6)) & TP & (yy > U(244)), U(2.5)) * sstep(U(26), U(46), prat_d)
 SOL = (298, 428)
 rsol = np.hypot(xx - U(SOL[0]), yy - U(SOL[1])) + zn * U(3)
 sol_basin = sstep(U(15), U(9), rsol) * (LBL == 4)
@@ -86,7 +97,7 @@ ranges = [  # (polyline, half-width units, strength)
  ([(152,236),(142,300),(146,382)], 8, 0.35),
  ([(528,184),(568,158),(620,148),(676,154),(728,184)], 15, 1.0),
  ([(760,226),(768,288),(748,344)], 13, 0.9),
- ([(498,198),(492,250),(504,296)], 8, 0.8),
+ ([(500,200),(496,240),(514,292)], 8, 0.8),
  ([(610,398),(666,396),(716,374)], 10, 0.65),
 ]
 mt = np.zeros((H, W), np.float32)
@@ -99,7 +110,7 @@ for j, (poly, wid, st) in enumerate(ranges):
 ring = np.exp(-((rsol - U(20)) / U(8)) ** 2) * (LBL == 4) * sstep(-0.9, 0.2, fbm(12, 3, 139))
 mt = np.maximum(mt, 0.42 * ring)
 mt *= sstep(0, U(6), dl)
-reg_rough = {1: 0.07, 2: 0.06, 3: 0.12, 4: 0.08, 5: 0.24, 6: 0.24, 7: 0.15, 8: 0.0}
+reg_rough = {1: 0.07, 2: 0.06, 3: 0.12, 4: 0.08, 5: 0.24, 6: 0.24, 7: 0.15, 8: 0.0, 9: 0.02}
 rough = np.zeros((H, W), np.float32)
 for k, v in reg_rough.items(): rough += v * blur((LBL == k).astype(np.float32), U(4))
 rough *= (1 - 0.95 * grey)
@@ -127,6 +138,12 @@ dune_w = blur((LBL == 8).astype(np.float32), U(1.5))
 dcoord = (xx * np.cos(0.5) + yy * np.sin(0.5)) / U(2.4) + fbm(18, 4, 231) * 2.6
 ripple = (0.5 + 0.5 * np.sin(dcoord)) ** 3
 h = h * (1 - 0.75 * dune_w) + dune_w * (ripple * 0.022 + 0.03 * sstep(0, U(5), dl))
+prat_w = blur((LBL == 9).astype(np.float32), U(1))
+pa_ = 0.32
+pu_ = (xx * np.cos(pa_) + yy * np.sin(pa_)) / S + fbm(14, 3, 241) * 1.2
+pv_ = (-xx * np.sin(pa_) + yy * np.cos(pa_)) / S + fbm(14, 3, 242) * 1.2
+bh_ = np.abs(np.sin(np.floor(pu_ / 3.2) * 12.9898 + np.floor(pv_ / 3.2) * 78.233) * 43758.5453) % 1
+h = h * (1 - 0.8 * prat_w) + prat_w * (0.03 + bh_ ** 2 * 0.03 * sstep(0, U(3), dl))
 h = blur(np.where(LAND, h, 0).astype(np.float32), 0.6)
 
 # ───────── 4. rivers ─────────
@@ -228,8 +245,9 @@ RAMPS = {
  6: [(0,(70,52,42)),(0.2,(52,38,32)),(0.5,(40,30,27)),(0.8,(30,24,23)),(1,(56,44,40))],
  7: [(0,(210,198,148)),(0.04,(150,156,104)),(0.1,(70,132,74)),(0.5,(48,110,62)),(0.8,(84,108,74)),(1,(126,128,112))],
  8: [(0,(132,80,52)),(1,(120,72,50))],
+ 9: [(0,(74,70,70)),(1,(66,62,64))],
 }
-NR = 9
+NR = 10
 wk = np.zeros((NR, H, W), np.float32)
 for k in range(1, NR): wk[k] = blur((LBL == k).astype(np.float32), U(2.0))
 ws = wk[1:].sum(0) + 1e-6
@@ -237,7 +255,7 @@ for k in range(1, NR): wk[k] /= ws
 col = np.zeros((H, W, 3), np.float32)
 for k in range(1, NR): col += ramp(e, RAMPS[k]) * wk[k][..., None]
 col *= (1 + tex * 0.045)[..., None]
-ROCK = {1: (104,116,132), 2: (62,74,58), 3: (110,108,98), 4: (126,116,96), 5: (30,28,29), 6: (40,30,28), 7: (104,102,86), 8: (150,104,88)}
+ROCK = {1: (104,116,132), 2: (62,74,58), 3: (110,108,98), 4: (126,116,96), 5: (30,28,29), 6: (40,30,28), 7: (104,102,86), 8: (150,104,88), 9: (60,58,62)}
 rock_c = np.zeros((H, W, 3), np.float32)
 for k in range(1, NR): rock_c += np.array(ROCK[k], np.float32) * wk[k][..., None]
 rocky = sstep(0.6, 1.8, blur(slope_big, 1.0)) * (1 - 0.4 * wk[2])
@@ -251,6 +269,18 @@ sand = np.array([98, 54, 68], np.float32) * (1 - hue)[..., None] + np.array([134
 sand = sand * (1 - 0.45 * hue2[..., None]) + np.array([128, 54, 32], np.float32) * 0.45 * hue2[..., None]
 sand = sand * (0.9 + 0.18 * ripple[..., None])
 col = col * (1 - wk[8][..., None]) + sand * wk[8][..., None]
+# Pratvia: scrap towers and layered streets
+pa = 0.32
+pu = (xx * np.cos(pa) + yy * np.sin(pa)) / S + fbm(14, 3, 241) * 1.2
+pv = (-xx * np.sin(pa) + yy * np.cos(pa)) / S + fbm(14, 3, 242) * 1.2
+BLK = 3.2
+bu, bv = np.floor(pu / BLK), np.floor(pv / BLK)
+bh = np.abs(np.sin(bu * 12.9898 + bv * 78.233) * 43758.5453) % 1
+fu, fv = (pu / BLK) % 1, (pv / BLK) % 1
+street = np.maximum(sstep(0.14, 0.04, np.minimum(fu, 1 - fu)), sstep(0.14, 0.04, np.minimum(fv, 1 - fv)))
+pcol = np.array([84, 80, 80], np.float32) * (0.82 + 0.34 * bh[..., None]) + np.array([24, 4, -6], np.float32) * (bh > 0.8)[..., None]
+pcol = pcol * (1 - 0.38 * street[..., None])
+col = col * (1 - wk[9][..., None]) + pcol * wk[9][..., None]
 
 canopy = fbm(200, 2, 142)
 crowns = sstep(-0.1, 0.9, perlin(300, 148) + perlin(150, 149) * 0.6)
@@ -312,7 +342,7 @@ floes = sstep(0.6, 0.78, fbm(48, 4, 153) * 0.5 + iz * 0.95 - 0.25) * iz * (~LAND
 oc = mix(oc, floes * 0.92, (196, 214, 228))
 
 fade = sstep(U(172), U(206), yy) * sstep(U(504), U(470), yy)
-cx_s = U(463) + U(3.2) * np.sin(yy / U(21)) + fbm(14, 4, 160) * U(2.6)
+cx_s = U(463) + U(42) * np.exp(-((yy / S - 318) / 62) ** 2) + U(3.2) * np.sin(yy / U(21)) + fbm(14, 4, 160) * U(2.6)
 dx = np.abs(xx - cx_s)
 tint = np.exp(-(dx / U(17)) ** 2) * fade
 oc = mix(oc, tint * 0.88, (32, 7, 9))
@@ -361,6 +391,52 @@ for py, px in pts[r_.choice(len(pts), 170, replace=False)]: bio[py, px] = r_.uni
 img += blur(bio, 0.9)[..., None] * np.array([90, 255, 200]) * 1.4
 img += blur(bio, 3.2)[..., None] * np.array([40, 160, 120]) * 2.2
 
+# Pratvia neon and smog
+r_ = np.random.default_rng(250)
+pp = np.argwhere((LBL == 9) & (dl > U(1.2)))
+NEON = np.array([[255, 60, 200], [60, 230, 255], [255, 184, 64], [255, 184, 64], [255, 200, 120]], np.float32)
+neon = np.zeros((H, W, 3), np.float32)
+for i, (py, px) in enumerate(pp[r_.choice(len(pp), 700, replace=False)]):
+    neon[py, px] = NEON[r_.integers(0, 5)] * r_.uniform(0.4, 1.0)
+img += blur(neon, 0.7) * 1.5 + blur(neon, 2.6) * 1.6
+smog = sstep(-0.4, 1.0, fbm(16, 4, 251)) * blur(prat_w, U(5)) * 0.32
+img = mix(img, smog, (92, 84, 66))
+
+# Bridges to Primeridia from FeyVey and Regalus, and harbor piers (Dan, 2026-11-06)
+TPm = (LBL >= 2) & (LBL <= 4)
+PRm = LBL == 9
+def span(anchor, ang, extra=2.5):
+    d = np.array([np.cos(ang), np.sin(ang)]); p = np.array(anchor, float) * S; pts = [p.copy()]
+    state = 0
+    for _ in range(4000):
+        p = p + d * 0.5; iy_, ix_ = int(p[1]), int(p[0])
+        if not (0 <= iy_ < H and 0 <= ix_ < W): break
+        if state == 0 and not PRm[iy_, ix_]: state = 1
+        if state == 1 and TPm[iy_, ix_]: state = 2; stop = p + d * U(extra); pts.append(stop); break
+        pts.append(p.copy())
+    return np.array(pts) if state == 2 else None
+bridges = [b_ for b_ in (span((440, 304), np.deg2rad(198)), span((442, 360), np.deg2rad(140))) if b_ is not None]
+print('bridges', len(bridges))
+def piers(anchor, ang, L=4.5):
+    d = np.array([np.cos(ang), np.sin(ang)]); p = np.array(anchor, float) * S
+    for _ in range(2000):
+        p = p + d * 0.5
+        if not PRm[int(p[1]), int(p[0])]: break
+    return np.array([p - d * U(1), p + d * U(L)])
+pier_l = [piers((450, 330), np.deg2rad(a), 2.8) for a in (5, 75, 112, 315)]
+deck = stroke_mask([(b_, 2.4, 2.4) for b_ in bridges] + [(p_, 1.4, 1.4) for p_ in pier_l])
+shadow_b = np.roll(np.roll(deck, U(1.4), 0), U(1), 1) * (~LAND)
+img *= (1 - 0.45 * np.clip(shadow_b, 0, 1))[..., None]
+img = mix(img, deck * 0.95, (128, 122, 114))
+lamps = np.zeros((H, W), np.float32)
+for b_ in bridges + pier_l:
+    n_ = len(b_)
+    seg = np.linspace(0, 1, max(3, int(np.linalg.norm(b_[-1] - b_[0]) / U(1.7))))
+    for t in seg:
+        q = b_[0] + (b_[-1] - b_[0]) * t if len(b_) == 2 else b_[min(n_ - 1, int(t * (n_ - 1)))]
+        lamps[int(q[1]), int(q[0])] = 1
+img += blur(lamps, 0.7)[..., None] * np.array([255, 220, 150]) * 1.6 + blur(lamps, 2.5)[..., None] * np.array([255, 190, 110]) * 1.4
+
 # internal Terra Primus borders, faint and dashed
 bd = np.zeros((H, W), bool)
 for dy_, dx_ in ((0, 1), (1, 0), (1, 1)):
@@ -373,9 +449,9 @@ img = mix(img, np.clip(bdl, 0, 1) * 0.28, (236, 226, 196))
 
 # ───────── 9. Skyspire shadow, clouds, grade ─────────
 log('sky')
-skym = poly_mask(shp['sky']).astype(np.float32)
-sky_sh = blur(np.roll(np.roll(skym, U(30), 0), U(15), 1), U(7))
-img *= (1 - 0.4 * sky_sh)[..., None]
+skym = poly_mask(sky_xf(shp['sky'])).astype(np.float32)
+sky_sh = blur(np.roll(np.roll(skym, U(16), 0), U(8), 1), U(4))
+img *= (1 - 0.45 * sky_sh)[..., None]
 
 lum = img.mean(-1, keepdims=True)
 img = img * 0.92 + lum * 0.08
@@ -415,8 +491,8 @@ def trace_paths(mask, min_area=80, eps=1.0):
         out.append('M' + 'L'.join(f'{x:g},{y:g}' for x, y in np.round(a, 1)) + 'Z')
     return ''.join(out)
 regions = {'frozen': LBL == 1, 'dormose': LBL == 2, 'feyvey': LBL == 3, 'regalus': LBL == 4,
-           'ashen': LBL == 5, 'emberfell': LBL == 6, 'oceanus': LBL == 7, 'redwake': LBL == 8,
-           'scar': (tint > 0.35) & ~LAND & (xx > U(436)) & (xx < U(492))}
+           'ashen': LBL == 5, 'emberfell': LBL == 6, 'oceanus': LBL == 7, 'redwake': LBL == 8, 'pratvia': LBL == 9,
+           'scar': (tint > 0.35) & ~LAND & (xx > U(436)) & (xx < U(545))}
 shapes = {k: trace_paths(v) for k, v in regions.items()}
 shapes['echo'] = 'M' + 'L'.join(f'{x:g},{y:g}' for x, y in np.round(echo_px[::3] / S, 1))
 json.dump(shapes, open(f'{OUT}/shapes.json', 'w'))

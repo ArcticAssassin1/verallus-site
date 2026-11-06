@@ -97,19 +97,19 @@ export default function WorldMap() {
 
             {/* ── TERRA PRIMUS: DORMOSE ── */}
             <Region id="dormose" label="Dormose" color="#4ade80" hl={MAP_SHAPES.dormose} open={setActive}>
-              <path className="wm-hit" d="M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 224.6,477.2 237.1,486.3 254,493.8 C 254,493.8 248,478 244,466 C 236,442 240,416 237,388 C 234,360 236,334 238,312 C 230,300 224,286 220,270 C 215,234 205,208 186,198 Z" />
+              <path className="wm-hit" d="M 148,188 C 130,228 122,292 126,360 C 130,425 150,468 178,482 C 196,492 215,486 218,468 C 224.6,477.2 237.1,486.3 254,493.8 C 254,493.8 248,478 244,466 C 236,442 240,416 237,388 C 234,360 236,334 238,312 C 228,302 218,288 212,270 C 207,236 200,210 186,198 Z" />
               <text className="wm-label" x="180" y="345" fill="rgba(134,239,172,0.92)" fontSize="6.5" letterSpacing="1" textAnchor="middle" transform="rotate(-90 180 345)">DORMOSE</text>
             </Region>
 
             {/* ── TERRA PRIMUS: FEYVEY ── */}
             <Region id="feyvey" label="FeyVey Territories" color="#a78bfa" hl={MAP_SHAPES.feyvey} open={setActive}>
-              <path className="wm-hit" d="M 186,198 C 205,208 215,234 220,270 C 224,286 230,300 238,312 C 262,318 300,322 332,326 C 366,330 396,336 418,344 C 428,348 436.9,356 436.9,356 C 433.7,332 432.4,313.7 436,302 C 442,275 444,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
+              <path className="wm-hit" d="M 186,198 C 200,210 207,236 212,270 C 218,288 228,302 238,312 C 262,318 300,322 332,326 C 362,330 388,340 404,352 C 396,330 398,298 408,280 C 418,262 438,248 442,220 C 438,192 422,170 394,158 C 362,146 322,142 282,145 C 242,148 210,168 186,198 Z" />
               <text className="wm-label" x="308" y="210" fill="rgba(196,181,253,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">FEYVEY TERRITORIES</text>
             </Region>
 
             {/* ── TERRA PRIMUS: REGALUS ── */}
             <Region id="regalus" label="Regalus Heartlands" color="#fbbf24" hl={MAP_SHAPES.regalus} open={setActive}>
-              <path className="wm-hit" d="M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 442,392 438,364 C 437.6,361.3 437.2,358.6 436.9,356 C 436.9,356 428,348 418,344 C 396,336 366,330 332,326 C 300,322 262,318 238,312 Z" />
+              <path className="wm-hit" d="M 238,312 C 236,334 234,360 237,388 C 240,416 236,442 244,466 C 248,478 254,493.8 254,493.8 C 262.9,497.8 273,501.2 284,504 C 316,512 352,510 382,500 C 412,490 434,468 440,444 C 446,420 446,400 436,392 C 420,382 406,370 404,352 C 388,340 362,330 332,326 C 300,322 262,318 238,312 Z" />
               <text className="wm-label" x="310" y="415" fill="rgba(253,224,71,0.92)" fontSize="7" letterSpacing="1.5" textAnchor="middle">REGALUS HEARTLANDS</text>
             </Region>
 
@@ -117,14 +117,14 @@ export default function WorldMap() {
 
             {/* ── ABYSSAL SCAR ── */}
             <Region id="scar" label="Abyssal Scar" color="#ef4444" hl={MAP_SHAPES.scar} open={setActive}>
-              <rect className="wm-hit" x="445" y="188" width="37" height="295" />
-              <rect x="457" y="196" width="12" height="278" rx="6" fill="rgba(239,68,68,0.32)" filter="url(#softGlow)" style={{ animation: 'scarPulse 2.5s ease-in-out infinite' }} />
-              <text className="wm-label" x="474" y="342" fill="rgba(252,165,165,0.9)" fontSize="6.5" letterSpacing="1.5" textAnchor="middle" writingMode="tb">ABYSSAL SCAR</text>
+              <path className="wm-hit" d="M 446.5,188 L 447.3,203 L 449.1,218 L 452.4,233 L 457.7,248 L 465.1,263 L 473.7,278 L 481.7,293 L 486.9,308 L 487.7,323 L 483.8,338 L 476.5,353 L 467.9,368 L 460.0,383 L 453.9,398 L 450.0,413 L 447.8,428 L 446.7,443 L 446.3,458 L 446.1,473 L 446.0,483 L 478.0,483 L 478.1,473 L 478.3,458 L 478.7,443 L 479.8,428 L 482.0,413 L 485.9,398 L 492.0,383 L 499.9,368 L 508.5,353 L 515.8,338 L 519.7,323 L 518.9,308 L 513.7,293 L 505.7,278 L 497.1,263 L 489.7,248 L 484.4,233 L 481.1,218 L 479.3,203 L 478.5,188 Z" />
+              <path d="M 464.0,198 L 465.0,210 L 466.8,222 L 469.7,234 L 473.9,246 L 479.5,258 L 486.1,270 L 493.0,282 L 499.2,294 L 503.5,306 L 505.0,318 L 503.5,330 L 499.2,342 L 493.0,354 L 486.1,366 L 479.5,378 L 473.9,390 L 469.7,402 L 466.8,414 L 465.0,426 L 464.0,438 L 463.5,450 L 463.2,462 L 463.1,474 L 463.1,474" fill="none" stroke="rgba(239,68,68,0.32)" strokeWidth="12" strokeLinecap="round" filter="url(#softGlow)" style={{ animation: 'scarPulse 2.5s ease-in-out infinite' }} />
+              <text className="wm-label" x="472" y="428" fill="rgba(252,165,165,0.9)" fontSize="6.5" letterSpacing="1.5" textAnchor="middle" writingMode="tb">ABYSSAL SCAR</text>
             </Region>
 
             {/* ── ASHEN DOMINION ── */}
             <Region id="ashen" label="Ashen Dominion" color="#dc2626" hl={MAP_SHAPES.ashen} open={setActive}>
-              <path className="wm-hit" d="M 525,178 C 538,150 572,128 620,130 C 668,132 718,158 750,195 C 778,228 784,268 775,305 C 765,340 743,368 715,385 C 688,402 658,410 628,412 L 620,452 C 608,472 588,484 562,486 C 536,488 512,474 498,452 C 484,430 480,402 482,374 C 484,346 498,325 512,308 C 498,290 488,268 484,244 C 480,220 484,198 494,182 C 504,168 518,178 525,178 Z" />
+              <path className="wm-hit" d="M 525,178 C 538,150 572,128 620,130 C 668,132 718,158 750,195 C 778,228 784,268 775,305 C 765,340 743,368 715,385 C 688,402 658,410 628,412 L 620,452 C 608,472 588,484 562,486 C 536,488 512,474 498,452 C 484,430 480,402 486,382 C 494,362 518,350 524,328 C 530,306 520,286 506,268 C 494,254 486,236 486,214 C 487,198 496,176 525,178 Z" />
               <text className="wm-label" x="645" y="268" fill="rgba(209,213,219,0.85)" fontSize="6" letterSpacing="1" textAnchor="middle">GREY EXPANSE</text>
               <text className="wm-label" x="645" y="278" fill="rgba(156,163,175,0.75)" fontSize="5" letterSpacing="0.8" textAnchor="middle">NULL ZONE</text>
               <text className="wm-label" x="538" y="410" fill="rgba(252,165,165,0.85)" fontSize="5.5" letterSpacing="0.8" textAnchor="middle">MAWLANDS</text>
@@ -155,12 +155,16 @@ export default function WorldMap() {
               <text className="wm-label" x="706" y="522" fill="rgba(253,186,116,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">EMBERFELL</text>
             </Region>
 
-            {/* ── SKYSPIRE ZENITH (floating) ── */}
-            <Region id="skyspire" label="Skyspire Zenith" color="#4fc3f7" open={setActive} float>
-              <image href={MAP_IMG.skyspire} x={SKY_BOX.x} y={SKY_BOX.y} width={SKY_BOX.w} height={SKY_BOX.h} />
-              <path className="wm-hit" d="M 350,70 C 356,52 380,40 408,38 C 438,36 462,50 466,68 C 470,90 456,112 430,122 C 412,128 386,126 368,116 C 350,104 344,88 350,70 Z" />
-              <text className="wm-label" x="408" y="146" fill="rgba(125,211,252,0.95)" fontSize="7" letterSpacing="1.5" textAnchor="middle">SKYSPIRE ZENITH</text>
-              <text className="wm-label" x="408" y="154" fill="rgba(125,211,252,0.7)" fontSize="5" letterSpacing="1" textAnchor="middle">FLOATING · NEUTRAL</text>
+            {/* ── SKYSPIRE ZENITH: Primeridia floats over Pratvia, its own island ── */}
+            <Region id="skyspire" label="Skyspire Zenith" color="#4fc3f7" hl={MAP_SHAPES.pratvia} open={setActive}>
+              <path className="wm-hit" d="M 438,278 C 450,272 464,278 468,290 C 474,306 472,328 470,344 C 468,358 460,370 448,371 C 436,372 428,362 427,348 C 425,332 425,310 427,296 C 429,286 432,280 438,278 Z" />
+              <text className="wm-label" x="452" y="364" fill="rgba(240,171,252,0.9)" fontSize="5" letterSpacing="1" textAnchor="middle">PRATVIA</text>
+              <g style={{ animation: 'floatUp 4s ease-in-out infinite' }}>
+                <image href={MAP_IMG.skyspire} x={SKY_BOX.x} y={SKY_BOX.y} width={SKY_BOX.w} height={SKY_BOX.h} />
+                <path className="wm-hit" d="M 416.1,294.9 C 419.4,285 432.6,278.4 448,277.3 C 464.5,276.2 477.7,283.9 479.9,293.8 C 482.1,305.9 474.4,318 460.1,323.5 C 450.2,326.8 435.9,325.7 426,320.2 C 416.1,313.6 412.8,304.8 416.1,294.9 Z" />
+                <text className="wm-label" x="449" y="258" fill="rgba(125,211,252,0.95)" fontSize="6.5" letterSpacing="1.4" textAnchor="middle">SKYSPIRE ZENITH</text>
+                <text className="wm-label" x="449" y="265" fill="rgba(125,211,252,0.72)" fontSize="4.6" letterSpacing="1" textAnchor="middle">PRIMERIDIA · NEUTRAL</text>
+              </g>
             </Region>
 
             {/* ── OATHLESS SKY (pocket dimension) ── */}

@@ -132,7 +132,8 @@ scol += (np.exp(-(rr / 0.05) ** 2) * 0.8)[..., None] * np.array([230, 200, 255])
 salpha = np.clip(dens * 0.86 + eye * 0.7 + blur(bolt, 4) * 0.8, 0, 1) * sstep(1.0, 0.82, rr)
 st = np.dstack([np.clip(scol, 0, 255), salpha * 255]).astype(np.uint8)
 Image.fromarray(st, 'RGBA').resize((SR * 2 * S, SR * 2 * S), Image.LANCZOS).save(f'{OUT}/storm.webp', quality=88, method=6)
-json.dump({'sky': dict(x=bx0, y=by0, w=bx1 - bx0, h=by1 - by0), 'stormR': SR}, open(f'{OUT}/layers.json', 'w'))
+x0_, y0_ = sky_xf([(bx0, by0)])[0]
+json.dump({'sky': dict(x=round(x0_, 1), y=round(y0_, 1), w=round((bx1 - bx0) * SKY_SCALE, 1), h=round((by1 - by0) * SKY_SCALE, 1)), 'stormR': SR}, open(f'{OUT}/layers.json', 'w'))
 
 # preview on navy
 for name in ('skyspire', 'storm'):
