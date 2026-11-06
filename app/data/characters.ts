@@ -112,7 +112,7 @@ export const GROUPS: Group[] = [
           { v: '{{Space Convergence}}', l: 'Lost Art' },
           { v: '{{Alive}}', l: 'Status' },
         ],
-        desc: `A legendary Elite Six hero, executed as a traitor about seventeen years ago by the official record. "Oris the Untouchable," they called him. With his Recall the team could move anywhere he had been, so they could never truly be cornered. Arah knows him only through rumor. {{He faked his death with Varel's help and has lived hidden at the Shaleh-Kai Enclave ever since. His Enhancer Sofra evolved into Space Convergence: he pulls force, objects and people toward a single point. He is a Monolith. In Book 6 he uses Actus Ultimus. His eyes meet Arah's, and he is at peace.}}`,
+        desc: `A legendary Elite Six hero, executed as a traitor about seventeen years ago by the official record. "Oris the Untouchable," they called him. His Recall could carry him and up to three others anywhere he had been, and with it the team could never truly be cornered. Arah knows him only through rumor. {{He faked his death with Varel's help and has lived hidden at the Shaleh-Kai Enclave ever since. His Enhancer Sofra evolved into Space Convergence: he pulls force, objects and people toward a single point. He is a Monolith. In Book 6 he uses Actus Ultimus. His eyes meet Arah's, and he is at peace.}}`,
         tells: [
           `{{He closes his eyes and exhales through his nose before a fight. His son does the same, without ever learning it from him.}}`,
           `{{The Faren earrings were his, and his father's before him. Seeing them on a stranger's face at the Enclave is what freezes him.}}`,
@@ -353,7 +353,7 @@ export const GROUPS: Group[] = [
           { v: '16', l: 'Youngest recruit ever' },
           { v: 'Trainer', l: 'At the facility' },
         ],
-        desc: `The youngest Elite Six member ever, recruited at sixteen out of the Pratvia undercity. In Book 1 he's the selectees' trainer at the Proctor's facility. "I may be part of the Elite 6, but here I am just your trainer." He rates everyone out loud by race and tier, and calls Arah "Two." He shocks door handles and people who touch him, and plays it off as a prank. He can't help it. {{His catalyst gene was implanted at twelve, harvested from a Farrow child who died on the table. He traded himself to save his sister, and they killed her anyway. Tier 7 is his ceiling, and his body is burning out. In Book 4, Arah's ice saves him.}}`,
+        desc: `The youngest Elite Six member ever, recruited at sixteen out of the Pratvia undercity. In Book 1 he's the selectees' trainer at the Proctor's facility. "I may be part of the Elite 6, but here I am just your trainer." He rates everyone out loud by race and tier, and calls Arah "Two." He shocks door handles and people who touch him, and plays it off as a prank. He can't help it. {{His catalyst gene was implanted at twelve, harvested from a Farrow child who died on the table. He traded himself to save his sister, and they killed her anyway. Tier 7 is his ceiling, and his body is burning out. Later in the series, Arah's ice saves him.}}`,
         tells: [
           `He eats fast with an arm around the plate and sits where he can see the exits.`,
           `{{A shaking hand after a fight, a nosebleed wiped before anyone sees, a headache he blames on the noise.}}`,

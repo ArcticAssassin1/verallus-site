@@ -57,7 +57,7 @@ export const FACTION_GROUPS: FactionGroup[] = [
           ] },
           { title: 'THE LAST GENERATION', items: [
             `The previous team lost two members in one generation: Oris Faren, executed for treason, and Saint Fracture, lost to corruption. Kharos replaced Oris about seventeen years ago. Kaisho replaced Saint Fracture three years ago, at sixteen.`,
-            `With Oris went his Recall, which could move the team anywhere he had been. They could never be truly cornered. The current team has adapted, and the gap is acknowledged quietly.`,
+            `With Oris went his Recall, which could carry him and up to three others anywhere he had been. With it, the team could never be truly cornered. The current team has adapted, and the gap is acknowledged quietly.`,
             `Varelle, the Burnt Seraph, died fighting corruption. Wynn Ardent retired, and is still consulted.`,
             `{{Oris Faren isn't dead. And Arah joins the Six officially in Books 5 and 6.}}`,
           ] },

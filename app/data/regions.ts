@@ -10,7 +10,7 @@ export const REGIONS = {
     name: 'Regalus Heartlands',
     sub: 'HOME OF ARAH FAREN · POPULATION ~8 MILLION',
     status: 'COMMUNAL · SPIRITUAL · NO WALLS, NO GATES',
-    desc: 'Rolling hills, forests and rivers under a mild four-season sky. The Regalus build everything in circles: their homes, their gatherings, even their grief. They believe no soul is meant to suffer alone, and that a fearful people can never be free. Their capital Solhaven has no walls. That was never weakness. When the FeyVey besieged it, they found out why.',
+    desc: 'Rolling hills, forests and rivers under a mild four-season sky. The Regalus build everything in circles: their homes, their gatherings, even their grief. They believe no soul is meant to suffer alone, and that a fearful people can never be free. Their capital Solhaven has no walls. That was never weakness. When FeyVey Purists and Torn besieged it, they found out why.',
     stats: [
       { v: '~8M', l: 'Population' },
       { v: '70–90', l: 'Lifespan (yrs)' },
