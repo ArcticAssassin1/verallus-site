@@ -294,7 +294,7 @@ export const ERAS: Era[] = [
       },
       {
         when: '16', at: 16, title: 'Arah and Mallory are born',
-        d: `Arah Faren and Mallory Voss are born into the false peace. Arah's birth is a scandal in both communities, because his mother is believed to be FeyVey. {{He is Regalus and Farrow, and he spends his first three years at the Shaleh-Kai Enclave with both parents. Mallory's father is Varek Voss.}}`,
+        d: `Arah Faren and Mallory Voss are born into the false peace. {{He is Regalus and Farrow, and he spends his first three years at the Shaleh-Kai Enclave with both parents. Mallory's father is Varek Voss.}}`,
       },
       {
         when: '~16', at: 15.75, title: `{{Mallory's mother}}`,
